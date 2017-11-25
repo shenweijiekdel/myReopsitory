@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.examsystem.mapper.ExamMapper">
+<insert id="saveExam" parameterType="cn.tedu.examsystem.pojo.Exam">
+    INSERT INTO t_exam VALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="eId != null">e_id,</if>
+        <if test="eExam != null">e_exam</if>
+        <if test="eTime != null">e_time</if>
+        <if test="isOnline != null">is_online</if>
+    </trim>
+    VALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="eId != null">#{eId},</if>
+        <if test="eExam != null">#{eExam}</if>
+        <if test="eTime != null">#{eTime}</if>
+        <if test="isOnline != null">#{isOnline}</if>
+    </trim>
+</insert>
+</mapper>
