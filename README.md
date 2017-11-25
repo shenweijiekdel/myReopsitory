@@ -1,2 +1,0 @@
-# myReopsitory
-my simple projects
