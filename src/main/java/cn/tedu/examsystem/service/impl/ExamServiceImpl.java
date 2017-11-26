@@ -36,14 +36,19 @@ ExamServiceImpl implements ExamService {
 @Transactional
     public void deleteExam(int examid) {
         Exam exam = examMapper.findExambyId(examid);
+        List<Answer> answers = null;
+        List<Option> options = null;
         List<Question> questions = exam.getQuestions();
+    System.out.println(questions);
         for (Question question:questions){
-            answerMapper.deleteAnswerByOid(question.getAnswers());
-            optionMapper.deleteOptionByPid( question.getOptions());
+            if ((answers = question.getAnswers()).size() > 0)
+            answerMapper.deleteAnswerByOid(answers);
+            if ((options = question.getOptions()).size() > 0)
+            optionMapper.deleteOptionByPid( options);
 
         }
-
-        questionMapper.deleteQuestionByEid(exam.getQuestions());
+    if (questions.size() > 0)
+        questionMapper.deleteQuestionByEid(questions);
         examMapper.deleteExamById(exam.geteId());
     }
 }

@@ -22,10 +22,12 @@ public class QuestionServiceImpl implements QuestionService{
     private AnswerMapper answerMapper;
     @Transactional
     public int putQuestionIntoBlank(Question question) {
+
         System.out.println(question);
         questionMapper.addQuestion(question);
         answerMapper.addAnswer(question.getAnswers());
         optionMapper.addOption(question.getOptions());
+
         return 0;
     }
 
