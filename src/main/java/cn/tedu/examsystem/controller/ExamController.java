@@ -35,13 +35,13 @@ public class ExamController {
         dateFormat.setLenient(true);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
-    @RequestMapping("question/addQuestionBlank.html")
-    public String addQuestionBlank(Question question,String[] questionOption,int[] questionAnswer,Model model){
-
-        System.out.println(Arrays.toString(questionAnswer));
-        question.setpId(UUID.randomUUID().toString());
+    @RequestMapping("addQuestionBlank.html")
+    public String addQuestionBlank(int examId,Question question,String[] questionOption,int[] questionAnswer,Model model){
         List<Option> options = new ArrayList<Option>();
         List<Answer> answers = new ArrayList<Answer>();
+        question.setpId(UUID.randomUUID().toString());
+        question.seteId(examId);
+
 
         for (String opt:questionOption){
         Option option = new Option();
@@ -60,13 +60,31 @@ public class ExamController {
         question.setAnswers(answers);
         question.setOptions(options);
         questionService.putQuestionIntoBlank(question);
-        return "home";
+        return "redirect:/exam/showExamInfo.xml";
     }
     @RequestMapping("createExam.html")
     public String createExam(Exam exam,Model model){
 
         examService.createExam(exam);
 
-        return null;
+        return "redirect:/exam/displayExam.html";
     }
+    @RequestMapping("displayExam.html")
+    public String displayExam(Model model){
+        List<Exam> exams = examService.displayExams();
+        System.out.println(exams);
+        if (exams != null)
+        model.addAttribute("exams",exams);
+        return "home";
+    }
+    @RequestMapping("showExamInfo.html")
+    public String showExamInfo(Model model,int examid){
+        List<Question> list = null;
+        model.addAttribute("examId",examid);
+        list =  questionService.findAll(examid);
+        if (list != null)
+            model.addAttribute("questions",list);
+        return "showExamInfo";
+    }
+
 }

@@ -6,11 +6,18 @@ import cn.tedu.examsystem.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class ExamServiceImpl implements ExamService {
+public class
+ExamServiceImpl implements ExamService {
     @Autowired
     private ExamMapper examMapper;
     public void createExam(Exam exam){
         examMapper.saveExam(exam);
+    }
+
+    public List<Exam> displayExams() {
+        return examMapper.findAllExam();
     }
 }

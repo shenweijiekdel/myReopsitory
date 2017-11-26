@@ -50,7 +50,8 @@
     </script>
 </head>
 <body>
-<form method="post" action="${pageContext.request.contextPath}/exam/question/addQuestionBlank.html">
+<form method="post" action="${pageContext.request.contextPath}/exam/addQuestionBlank.html">
+    <input type="hidden" value="${examId}" name="examId">
     <table border="1">
         <tr>
             <td>

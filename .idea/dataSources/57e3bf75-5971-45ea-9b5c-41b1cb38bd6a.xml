@@ -98,7 +98,11 @@
       <DataType>char(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="36" parent="20" name="PRIMARY">
+    <column id="36" parent="20" name="e_id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <key id="37" parent="20" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>p_id</ColNames>
       <Primary>1</Primary>

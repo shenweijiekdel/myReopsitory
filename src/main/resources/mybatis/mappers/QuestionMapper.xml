@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.examsystem.mapper.QuestionMapper">
+<insert id="addQuestion" parameterType="cn.tedu.examsystem.pojo.Question">
+    INSERT INTO t_problem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="pId != null">p_id,</if>
+        <if test="pStem != null">p_stem,</if>
+        <if test="eId != null">e_id,</if>
+    </trim>
+    VALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="pId != null">#{pId},</if>
+        <if test="pStem != null">#{pStem},</if>
+        <if test="eId != null">#{eId},</if>
+    </trim>
+</insert>
+    <select id="findAll" resultMap="queRM">
+      SELECT t_problem.p_id ppId,p_stem,e_id,t_option.o_id ooId,
+  o_content,t_option.p_id opId,a_id,t_answer.p_id apId,t_answer.o_id aoId FROM t_problem
+  LEFT JOIN t_option ON t_problem.p_id=t_option.p_id
+  LEFT JOIN t_answer ON t_option.o_id=t_answer.o_id
+WHERE e_id=#{eId}
+    </select>
+    <resultMap id="queRM" type="cn.tedu.examsystem.pojo.Question">
+        <id column="ppId" property="pId"/>
+        <result column="p_stem" property="pStem"/>
+        <result column="e_id" property="eId"/>
+        <collection property="options"  ofType="cn.tedu.examsystem.pojo.Option" >
+            <result column="ooId" property="oId"/>
+            <result column="o_content" property="oContent"/>
+            <result column="opId" property="pId"/>
+        </collection>
+        <collection property="answers"  ofType="cn.tedu.examsystem.pojo.Answer">
+            <result column="a_id" property="aId"/>
+            <result column="apId" property="pId"/>
+            <result column="aoId" property="oId"/>
+        </collection>
+    </resultMap>
+</mapper>

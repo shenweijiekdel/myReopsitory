@@ -5,18 +5,29 @@ import java.util.List;
 public class Question {
     private String pId;
     private String pStem;
-    private List<Option> options;
-    private List<Answer> answers;
+    private int eId;
 
     @Override
     public String toString() {
-        return "QuestionBlank{" +
-                "pId=" + pId +
+        return "Question{" +
+                "pId='" + pId + '\'' +
                 ", pStem='" + pStem + '\'' +
+                ", eId=" + eId +
                 ", options=" + options +
                 ", answers=" + answers +
                 '}';
     }
+
+    public int geteId() {
+        return eId;
+    }
+
+    public void seteId(int eId) {
+        this.eId = eId;
+    }
+
+    private List<Option> options;
+    private List<Answer> answers;
 
     public String getpId() {
         return pId;
