@@ -3,6 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tedu.examsystem.mapper.OptionMapper">
+    <delete id="deleteOptionByPid">
+
+            DELETE FROM t_option WHERE p_id IN
+        <foreach collection="list" item="option" open="(" close=")" separator=",">
+          #{option.pId}
+        </foreach>
+    </delete>
 <insert id="addOption" parameterType="java.util.List">
 
         INSERT INTO t_option (o_id, o_content, p_id)

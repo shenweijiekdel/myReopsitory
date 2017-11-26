@@ -37,6 +37,7 @@ public class ExamController {
     }
     @RequestMapping("addQuestionBlank.html")
     public String addQuestionBlank(int examId,Question question,String[] questionOption,int[] questionAnswer,Model model){
+        System.out.println("examId=" + examId);
         List<Option> options = new ArrayList<Option>();
         List<Answer> answers = new ArrayList<Answer>();
         question.setpId(UUID.randomUUID().toString());
@@ -60,7 +61,7 @@ public class ExamController {
         question.setAnswers(answers);
         question.setOptions(options);
         questionService.putQuestionIntoBlank(question);
-        return "redirect:/exam/showExamInfo.xml";
+        return "redirect:/exam/showExamInfo.html?examid=" + question.geteId();
     }
     @RequestMapping("createExam.html")
     public String createExam(Exam exam,Model model){
@@ -72,7 +73,7 @@ public class ExamController {
     @RequestMapping("displayExam.html")
     public String displayExam(Model model){
         List<Exam> exams = examService.displayExams();
-        System.out.println(exams);
+        System.out.println(exams.size());
         if (exams != null)
         model.addAttribute("exams",exams);
         return "home";
@@ -86,5 +87,11 @@ public class ExamController {
             model.addAttribute("questions",list);
         return "showExamInfo";
     }
+    @RequestMapping("deleteExam.html")
+    public String deleteExam(int examid,Model model){
+        examService.deleteExam(examid);
+        return "redirect:/exam/displayExam.html";
+    }
+
 
 }

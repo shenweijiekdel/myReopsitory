@@ -3,6 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tedu.examsystem.mapper.ExamMapper">
+    <delete id="deleteExamById" parameterType="int">
+        DELETE FROM t_exam WHERE e_id=#{examid}
+    </delete>
 <insert id="saveExam" parameterType="cn.tedu.examsystem.pojo.Exam">
     INSERT INTO t_exam
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -22,7 +25,38 @@
     <select id="findAllExam" resultMap="examRM">
         SELECT * FROM t_exam;
     </select>
-    <resultMap id="examRM" type="cn.tedu.examsystem.pojo.Exam" autoMapping="true">
+    <resultMap id="examRM" type="cn.tedu.examsystem.pojo.Exam">
         <id column="e_id" property="eId"/>
+    </resultMap>
+ <select id="findExambyId" resultMap="examAllRM">
+            SELECT t_exam.e_id eeId,t_exam.e_exam eeExam,e_time eTime,is_online isOnline,t_problem.p_id ppId,p_stem,t_problem.e_id peId ,t_option.o_id ooId,
+            o_content,t_option.p_id opId,a_id,t_answer.p_id apId,t_answer.o_id aoId FROM t_exam
+            LEFT JOIN t_problem ON t_exam.e_id=t_problem.e_id
+            LEFT JOIN t_option ON t_problem.p_id=t_option.p_id
+            LEFT JOIN t_answer ON t_option.o_id=t_answer.o_id
+            WHERE t_exam.e_id=#{eId}
+    </select>
+    <resultMap id="examAllRM" type="cn.tedu.examsystem.pojo.Exam">
+        <id column="eeId" property="eId"/>
+        <result column="eeExam" property="eExam"/>
+        <result column="eTime" property="eTime"/>
+        <result column="isOnline" property="isOnline"/>
+        <collection property="questions" ofType="cn.tedu.examsystem.pojo.Question">
+
+
+        <id column="ppId" property="pId"/>
+        <result column="p_stem" property="pStem"/>
+        <result column="peId" property="eId"/>
+        <collection property="options"  ofType="cn.tedu.examsystem.pojo.Option" >
+            <result column="ooId" property="oId"/>
+            <result column="o_content" property="oContent"/>
+            <result column="opId" property="pId"/>
+        </collection>
+        <collection property="answers"  ofType="cn.tedu.examsystem.pojo.Answer">
+            <result column="a_id" property="aId"/>
+            <result column="apId" property="pId"/>
+            <result column="aoId" property="oId"/>
+        </collection>
+        </collection>
     </resultMap>
 </mapper>

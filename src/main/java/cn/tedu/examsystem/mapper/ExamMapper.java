@@ -9,4 +9,7 @@ public interface ExamMapper {
     int saveExam(Exam exam);
     int saveQuestion(Question question);
     List<Exam> findAllExam();
+
+    void deleteExamById(int eId);
+  Exam findExambyId(int eId);
 }

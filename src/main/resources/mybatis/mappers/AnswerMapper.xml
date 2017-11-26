@@ -3,6 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tedu.examsystem.mapper.AnswerMapper">
+    <delete id="deleteAnswerByOid">
+        DELETE FROM t_answer WHERE o_id IN
+        <foreach collection="list" item="answer" open="(" close=")" separator=",">
+
+        #{answer.oId}
+        </foreach>
+    </delete>
 <insert id="addAnswer" parameterType="java.util.List">
     INSERT INTO t_answer (a_id,p_id,o_id)
     VALUES

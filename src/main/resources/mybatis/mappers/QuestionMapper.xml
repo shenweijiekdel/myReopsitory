@@ -3,6 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tedu.examsystem.mapper.QuestionMapper">
+    <delete id="deleteQuestionByEid">
+        DELETE FROM t_problem WHERE e_id IN
+        <foreach collection="list" item="question" open="(" close=")" separator=",">
+        #{question.eId}
+        </foreach>
+    </delete>
 <insert id="addQuestion" parameterType="cn.tedu.examsystem.pojo.Question">
     INSERT INTO t_problem
     <trim prefix="(" suffix=")" suffixOverrides=",">

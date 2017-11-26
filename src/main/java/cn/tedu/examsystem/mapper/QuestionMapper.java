@@ -7,4 +7,5 @@ import java.util.List;
 public interface QuestionMapper {
     List<Question> findAll(int eId);
     void addQuestion(Question question);
+    void deleteQuestionByEid(List<Question> question);
 }

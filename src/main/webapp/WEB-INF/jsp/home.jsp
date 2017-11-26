@@ -18,6 +18,7 @@
 <c:forEach items="${exams}" var="exam">
     <tr>
         <td><a href="/exam/showExamInfo.html?examid=${exam.eId}">${exam}</a></td>
+        <td><a href="/exam/deleteExam.html?examid=${exam.eId}">删除</a></td>
     </tr>
 </c:forEach>
     <div>

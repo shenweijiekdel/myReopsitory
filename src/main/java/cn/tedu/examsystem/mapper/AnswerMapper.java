@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AnswerMapper {
     void addAnswer(List<Answer> answers);
+    void deleteAnswerByOid(List<Answer> answer);
 }

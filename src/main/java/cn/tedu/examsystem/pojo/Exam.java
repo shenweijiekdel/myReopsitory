@@ -8,7 +8,7 @@ public class Exam {
     private String eExam;
     private Date eTime;
     private boolean isOnline;
-
+    private List<Question> questions;
     @Override
     public String toString() {
         return "Exam{" +
@@ -28,7 +28,6 @@ public class Exam {
         isOnline = online;
     }
 
-    private List<Question> questions;
 
     public int geteId() {
         return eId;
