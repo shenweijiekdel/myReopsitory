@@ -6,17 +6,14 @@ import cn.tedu.examsystem.pojo.Option;
 import cn.tedu.examsystem.pojo.Question;
 import cn.tedu.examsystem.service.ExamService;
 import cn.tedu.examsystem.service.QuestionService;
-import javafx.scene.input.DataFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -76,7 +73,7 @@ public class ExamController {
         System.out.println(exams.size());
         if (exams != null)
         model.addAttribute("exams",exams);
-        return "home";
+        return "back/backHome";
     }
     @RequestMapping("showExamInfo.html")
     public String showExamInfo(Model model,int examid){
@@ -85,7 +82,7 @@ public class ExamController {
         list =  questionService.findAll(examid);
         if (list != null)
             model.addAttribute("questions",list);
-        return "showExamInfo";
+        return "back/backShowExamInfo";
     }
     @RequestMapping("deleteExam.html")
     public String deleteExam(int examid,Model model){

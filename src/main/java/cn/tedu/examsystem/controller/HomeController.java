@@ -9,7 +9,7 @@ public class HomeController {
     @RequestMapping("/addQuestionBlank.html")
     public String addQuestionBlank(int examId,Model model){
         model.addAttribute("examId",examId);
-        return "addQuestionBlank";
+        return "back/backAddQuestionBlank";
     }
     @RequestMapping("/home.html")
     public String Home(){
@@ -19,6 +19,10 @@ public class HomeController {
     @RequestMapping("/createExam.html")
     public String createExam(){
 
-        return "createExam";
+        return "back/backCreateExam";
+    }
+    @RequestMapping("/table.html")
+    public String table(){
+        return "back/table";
     }
 }
