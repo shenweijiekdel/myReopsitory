@@ -76,8 +76,8 @@ ExamServiceImpl implements ExamService {
     @Transactional
     public void deleteExam(int examid) {
         Exam exam = examMapper.findExambyId(examid);
-        List<Answer> answers = null;
-        List<Option> options = null;
+        List<Answer> answers;
+        List<Option> options;
         List<Question> questions = exam.getQuestions();
     System.out.println(questions);
         for (Question question:questions){

@@ -72,13 +72,13 @@ public class ExamController {
     public String displayExam(Model model){
         List<Exam> exams = examService.displayExams();
         System.out.println(exams.size());
-        if (exams != null)
+        if (exams.size() > 0)
         model.addAttribute("exams",exams);
         return "back/backHome";
     }
     @RequestMapping("showExamInfo.html")
     public String showExamInfo(Model model,int examid){
-        List<Question> list = null;
+        List<Question> list;
         model.addAttribute("examId",examid);
         list =  questionService.findAll(examid);
         if (list != null)
