@@ -5,7 +5,7 @@
 <title>智能考试系统</title>
 	<script type="text/javascript">
 		function regist(){
-			window.location.href="/toregist.action";
+			window.location.href="/toregist.html";
 		}	
 	
 	</script>
@@ -22,7 +22,7 @@
  		</tr>
  		<tr>
  			<td>密码</td>
- 			<td><input name="sPassword" type="password" 、></td>
+ 			<td><input name="sPassword" type="password"></td>
  		</tr>
  		<tr>
  			<td><input type="submit" value="登录" /> </td>

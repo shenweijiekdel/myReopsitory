@@ -35,4 +35,9 @@ public class QuestionServiceImpl implements QuestionService{
 
         return questionMapper.findAll(i);
     }
+
+    public List<Question> findById(int i, String[] pId) {
+
+        return questionMapper.findById(i,pId);
+    }
 }

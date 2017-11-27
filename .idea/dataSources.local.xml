@@ -2,12 +2,7 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="examsystem@localhost" uuid="57e3bf75-5971-45ea-9b5c-41b1cb38bd6a">
-      <database-info product="MySQL" version="5.5.27" jdbc-version="3.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.10 ( Revision: ${svn.Revision} )">
-        <extra-name-characters>#@</extra-name-characters>
-        <identifier-quote-string>`</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
-      <user-name>root</user-name>
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <introspection-schemas>*:examsystem</introspection-schemas>
     </data-source>
     <data-source name="examsystem@23.83.224.161" uuid="f62ac7a2-3358-4425-bd96-16d7a0d510db">
@@ -16,6 +11,7 @@
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
       <user-name>fswj</user-name>
       <introspection-schemas>*:examsystem</introspection-schemas>
     </data-source>

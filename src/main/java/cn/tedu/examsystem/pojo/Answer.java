@@ -5,6 +5,13 @@ public class Answer {
     private String pId;
     private String oId;
 
+    public Answer(String pId, String oId) {
+        this.pId = pId;
+        this.oId = oId;
+    }
+
+    public Answer() {   }
+
     @Override
     public String toString() {
         return "Answer{" +

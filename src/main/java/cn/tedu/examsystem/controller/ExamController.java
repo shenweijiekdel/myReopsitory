@@ -1,9 +1,6 @@
 package cn.tedu.examsystem.controller;
 
-import cn.tedu.examsystem.pojo.Answer;
-import cn.tedu.examsystem.pojo.Exam;
-import cn.tedu.examsystem.pojo.Option;
-import cn.tedu.examsystem.pojo.Question;
+import cn.tedu.examsystem.pojo.*;
 import cn.tedu.examsystem.service.ExamService;
 import cn.tedu.examsystem.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -25,6 +24,7 @@ public class ExamController {
     private QuestionService questionService;
     @Autowired
     private ExamService examService;
+    private int time = 200;
     @InitBinder
     public void initBinder(WebDataBinder binder) {
 
@@ -104,7 +104,29 @@ public class ExamController {
             Collections.shuffle(q.getOptions());
         }
         model.addAttribute("questionList",questions);
+        model.addAttribute("examId",examId);
         return "paper";
+    }
+    @RequestMapping("paperJudge.html")
+    public String paperJudge(Model model,String[] answers,int examId, HttpSession session){
+for (int i=0; i<answers.length; i++){
+    System.out.println(answers[i]);
+}
+        System.out.println(((Student)session.getAttribute("_CURRENT_STUDENT")).getsId());
+       /* List<Question> questions = questionService.findById(examId,pId);
+        for (Question question:questions
+             ) {
+
+        }
+        System.out.println("questions:");
+        System.out.println(questions);*/
+        return null;
+    }
+    @ResponseBody
+    @RequestMapping("timeOut.html")
+    public String timeOut(){
+       time --;
+       return time + "";
     }
 
 }

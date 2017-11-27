@@ -10,11 +10,36 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="../../staticfile/js/jquery-1.6.2.js"></script>
+    <script>
+        $(function () {
+            setInterval("time()",1000);
+
+        })
+        function time() {
+            $.post("/exam/timeOut.html",function (data) {
+                $("#timer").html(data);
+            });
+        }
+    </script>
+
 </head>
 <body>
+<div id="timer"></div>
+<div>
+
+</div>
+<form action="/exam/paperJudge.html" method="post">
+    <input type="hidden" value="${examId}" name="examId">
+<input type="hidden" value="${sId}" name="sId">
+
 <table>
+    <c:set var="count" value="1"></c:set>
     <c:forEach items="${questionList}" var="question">
         <tr>
+            <td>
+                ${count}.
+            </td>
             <td>
                ${question.pStem}
             </td>
@@ -24,12 +49,20 @@
                 <c:forEach items="${question.options}" var="options">
                     <tr>
                     <td>
-                        ${options.oContent}
+                        <%--一个input存一对值--%>
+                        <input name="answers" type="checkbox" value="${question.pId},${options.oId}">${options.oContent}
                     </td>
                     </tr>
                 </c:forEach>
 
+        <c:set var="count" value="${count + 1}" ></c:set>
     </c:forEach>
+<tr>o_id
+    <td>
+        <input type="submit" value="交卷">
+    </td>
+</tr>
 </table>
+</form>
 </body>
 </html>
