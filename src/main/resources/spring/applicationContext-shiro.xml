@@ -1,0 +1,104 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+
+	<!-- 1.安全管理器 2. Realm 3. 自定义的加密匹配器 4. 权限认证的观察器 5. Shiro过滤工厂 -->
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- <property name="realm" ref="authRealm"></property> -->
+		<!-- <property name="cacheManager" ref="cacheManager" /> -->
+        <property name="authenticator" ref="authenticator"></property>
+        <!-- 可以配置多个Realm，其实会把realms属性赋值给ModularRealmAuthenticator的realms属性 -->
+        <property name="realms">
+            <list>
+                <ref bean="studentRealm" />
+                <ref bean="adminRealm"/>
+            </list>
+        </property>
+	</bean>
+	<!-- <bean id="authRealm" class="cn.tedu.examsystem.shiro.AuthRealm">
+		<property name="credentialsMatcher" ref="authCredentialMatcher"></property>
+	</bean> -->
+
+	<bean id="authCredentialMatcher" class="cn.tedu.examsystem.shiro.AuthCredentialMatcher"></bean>
+
+	<bean id="advisor"
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager"></property>
+	</bean>
+	<!-- 配置使用自定义认证器，可以实现多Realm认证，并且可以指定特定Realm处理特定类型的验证 -->
+    <bean id="authenticator" class="cn.tedu.examsystem.shiro.CustomizedModularRealmAuthenticator">
+        <!-- 配置认证策略，只要有一个Realm认证成功即可，并且返回所有认证成功-+信息 -->
+        <property name="authenticationStrategy">
+            <bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
+        </property>
+    </bean>
+    <!-- 配置Realm -->
+    <bean id="studentRealm" class="cn.tedu.examsystem.shiro.StudentRealm">
+        <!-- 配置密码匹配器 -->
+        <property name="credentialsMatcher" ref="authCredentialMatcher">
+            <!-- <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                加密算法为MD5
+                <property name="hashAlgorithmName" value="MD5"></property>
+                加密次数
+                <property name="hashIterations" value="1024"></property>
+            </bean> -->
+        </property>
+    </bean>
+
+    <bean id="adminRealm" class="cn.tedu.examsystem.shiro.AdminRealm">
+        <!-- 配置密码匹配器 -->
+        <property name="credentialsMatcher" ref="authCredentialMatcher">
+            <!-- <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                加密算法为MD5
+                <property name="hashAlgorithmName" value="MD5"></property>
+                加密次数
+                <property name="hashIterations" value="1024"></property>
+            </bean> -->
+        </property>
+    </bean>
+
+
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"></property>
+		<!-- 设置登录地址：当用户没有登录，访问非登录页面时指定的请求地址 此地址会自动放行 -->
+		<property name="loginUrl" value="/tologin.html"></property>
+		<property name="filterChainDefinitions">
+			<value>
+				<!-- anon:放行 authc拦截 -->
+				/**=anon
+				<!-- /login.action=anon
+				/regist.action=anon -->
+				
+				<!-- 放行所有的静态资源文件 -->
+				<!-- /staticfile/** = anon -->
+				<!-- /*代表拦截所有的请求 /**代表拦截所有请求和所有静态文件 -->
+				<!-- /**=authc -->
+			</value>
+		</property>
+	</bean>
+	
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

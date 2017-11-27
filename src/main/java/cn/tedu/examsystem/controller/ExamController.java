@@ -65,9 +65,9 @@ public class ExamController {
 
         examService.createExam(exam);
 
-        return "redirect:/exam/displayExam.html";
+        return "redirect:/exam/back/displayExam.html";
     }
-    @RequestMapping("displayExam.html")
+    @RequestMapping("back/displayExam.html")
     public String displayExam(Model model){
         List<Exam> exams = examService.displayExams();
         System.out.println(exams.size());
@@ -87,8 +87,24 @@ public class ExamController {
     @RequestMapping("deleteExam.html")
     public String deleteExam(int examid,Model model){
         examService.deleteExam(examid);
-        return "redirect:/exam/displayExam.html";
+        return "redirect:/exam/back/displayExam.html";
     }
-
+    @RequestMapping("examList.html")
+    public String examList(Model model){
+        List<Exam> exams = examService.displayExams();
+        model.addAttribute("exams",exams);
+        return "frontHome";
+    }
+    @RequestMapping("questionList.html")
+    public String questionList(int examId,Model model){
+        List<Question>  questions = questionService.findAll(examId);
+        /*随即乱序集合*/
+        Collections.shuffle(questions);
+        for (Question q:questions){
+            Collections.shuffle(q.getOptions());
+        }
+        model.addAttribute("questionList",questions);
+        return "paper";
+    }
 
 }

@@ -30,6 +30,7 @@
   LEFT JOIN t_answer ON t_option.o_id=t_answer.o_id
 WHERE e_id=#{eId}
     </select>
+
     <resultMap id="queRM" type="cn.tedu.examsystem.pojo.Question">
         <id column="ppId" property="pId"/>
         <result column="p_stem" property="pStem"/>
