@@ -3,6 +3,7 @@ package cn.tedu.examsystem.controller;
 import cn.tedu.examsystem.pojo.*;
 import cn.tedu.examsystem.service.ExamService;
 import cn.tedu.examsystem.service.QuestionService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -109,17 +110,39 @@ public class ExamController {
     }
     @RequestMapping("paperJudge.html")
     public String paperJudge(Model model,String[] answers,int examId, HttpSession session){
-for (int i=0; i<answers.length; i++){
-    System.out.println(answers[i]);
-}
-        System.out.println(((Student)session.getAttribute("_CURRENT_STUDENT")).getsId());
-       /* List<Question> questions = questionService.findById(examId,pId);
+      List<Answer> sAnswers = new ArrayList<Answer>();
+
+        String[] que = new String[answers.length];
+        for (int i = 0; i <answers.length; i++) {
+            Answer sAnswer = new Answer();
+            sAnswer.setpId(answers[i].split(",")[0]);
+            sAnswer.setoId(answers[i].split(",")[1]);
+            sAnswers.add(sAnswer);
+        }
+
+        int Score = 0;
+
+
+       List<Question> questions = questionService.findById(examId,sAnswers);
+
+        boolean flag  = false;
         for (Question question:questions
              ) {
-
+                List<Answer> qAnswers = question.getAnswers();
+                List<Answer> sAnswer = new ArrayList<Answer>();
+                for (Answer an:sAnswers){
+                    if (an.getpId().equals(question.getpId()))
+                        sAnswer.add(an);
+                }
+            Collections.sort(sAnswer);
+            Collections.sort(qAnswers);
+                if (qAnswers.equals(sAnswer)){
+                    System.out.println("对");
+                }
+                else
+                    System.out.println("错");
         }
-        System.out.println("questions:");
-        System.out.println(questions);*/
+
         return null;
     }
     @ResponseBody

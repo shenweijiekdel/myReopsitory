@@ -36,8 +36,8 @@ WHERE e_id=#{eId}
   LEFT JOIN t_option ON t_problem.p_id=t_option.p_id
   LEFT JOIN t_answer ON t_option.o_id=t_answer.o_id
 WHERE e_id=#{eId} AND t_problem.p_id IN
-<foreach collection="pId"  item="pId" open="(" close=")" separator="," >
-    #{pId}
+<foreach collection="answers"  item="answer" open="(" close=")" separator="," >
+    #{answer.pId}
 </foreach>
 </select>
     <resultMap id="queRM" type="cn.tedu.examsystem.pojo.Question">
