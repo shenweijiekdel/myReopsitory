@@ -1,5 +1,8 @@
 package cn.tedu.examsystem.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +12,7 @@ public class Exam {
     private Date eTime;
     private boolean isOnline;
     private List<Question> questions;
+
     @Override
     public String toString() {
         return "Exam{" +
@@ -18,6 +22,14 @@ public class Exam {
                 ", isOnline=" + isOnline +
                 ", questions=" + questions +
                 '}';
+    }
+
+    public Date geteTime() {
+        return eTime;
+    }
+
+    public void seteTime(Date eTime) {
+        this.eTime = eTime;
     }
 
     public boolean isOnline() {
@@ -45,13 +57,6 @@ public class Exam {
         this.eExam = eExam;
     }
 
-    public Date geteTime() {
-        return eTime;
-    }
-
-    public void seteTime(Date eTime) {
-        this.eTime = eTime;
-    }
 
     public List<Question> getQuestions() {
         return questions;
