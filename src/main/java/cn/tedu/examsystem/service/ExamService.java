@@ -7,6 +7,6 @@ import java.util.List;
 public interface ExamService {
     void createExam(Exam exam);
     List<Exam> displayExams();
-
+    void paperJudge(String[] answers,int examId);
     void deleteExam(int examid);
 }

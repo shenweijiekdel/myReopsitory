@@ -110,39 +110,7 @@ public class ExamController {
     }
     @RequestMapping("paperJudge.html")
     public String paperJudge(Model model,String[] answers,int examId, HttpSession session){
-      List<Answer> sAnswers = new ArrayList<Answer>();
-
-        String[] que = new String[answers.length];
-        for (int i = 0; i <answers.length; i++) {
-            Answer sAnswer = new Answer();
-            sAnswer.setpId(answers[i].split(",")[0]);
-            sAnswer.setoId(answers[i].split(",")[1]);
-            sAnswers.add(sAnswer);
-        }
-
-        int Score = 0;
-
-
-       List<Question> questions = questionService.findById(examId,sAnswers);
-
-        boolean flag  = false;
-        for (Question question:questions
-             ) {
-                List<Answer> qAnswers = question.getAnswers();
-                List<Answer> sAnswer = new ArrayList<Answer>();
-                for (Answer an:sAnswers){
-                    if (an.getpId().equals(question.getpId()))
-                        sAnswer.add(an);
-                }
-            Collections.sort(sAnswer);
-            Collections.sort(qAnswers);
-                if (qAnswers.equals(sAnswer)){
-                    System.out.println("对");
-                }
-                else
-                    System.out.println("错");
-        }
-
+      examService.paperJudge(answers,examId);
         return null;
     }
     @ResponseBody
