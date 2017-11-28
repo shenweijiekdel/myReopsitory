@@ -16,16 +16,19 @@
     <title>Obey - Responsive Coming Soon Template </title>
     <!-- favicon icon -->
 <style>
-    a:link,a:visited
+    a:link,a:visited,a:default
     {
         display:block;
+        border-style: solid solid solid solid;
+        border-width: 1px;
+
         color:rgba(255,255,255,1);
         background-color:rgba(8,13,26,0.3);
-        width:150px;
+        width:100px;
         text-align:center;
         padding:5px;
         text-decoration:none;
-        border-radius:20px 20px 20px 20px;
+        border-radius:10px 10px 10px 10px;
     }
     a:hover,a:active
     {
@@ -33,8 +36,13 @@
         color: rgba(210,210,210,1);
 
     }
+    table{
+        font-size: 20px;
+        text-align: left;
+    }
 </style>
     <!--=============== Include all css file  ===============-->
+    <script src="${pageContext.request.contextPath}/staticfile/front/js/jquery-1.9.1.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/front/css/animate.css" media="all" />            <!-- Animate css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/front/css/font-awesome.min.css" media="all" />   <!-- Font awesome css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/front/css/font-sourch_sun_pro.css"/>             <!-- Font css -->
@@ -284,7 +292,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="about_us_text">
-                                <h2>欢迎注册</h2>
+                                <h2>欢迎登录</h2>
                                 <h4>Welcome to login</h4>
                             </div>
                         </div>
@@ -294,15 +302,19 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="about_us_text">
+                            <div class="servicer_area_text">
                                 <c:if test="${!empty _CURRENT_STUDENT}">
-                                    <h2>${_CURRENT_STUDENT.sName}</h2>
+                                    <h2>学号：${_CURRENT_STUDENT.sId}</h2>
+                                    <h2>姓名：${_CURRENT_STUDENT.sName}</h2>
+                                    <h2>班级：${_CURRENT_STUDENT.sClass}</h2>
+                                    <h4><a href="/logout.html">注销</a></h4>
                                 </c:if>
                                 <c:if test="${empty _CURRENT_STUDENT}">
-                                    <form id="form" method="post" action="send.php" name="send">
-                                        <input class="email_input requiredField sId" id="username" name="username" type="text" placeholder="用户名" >
-                                        <input class="email_input requiredField sName" id="password" name="password" type="password" placeholder="密码"><br />
-                                        <button class="email_submit email_margin_top submit" type="submit" value="Submit">submit</button>
+                                    <div id="msg">${errorInfo}</div>
+                                    <form id="form" method="post" action="${pageContext.request.contextPath}/login.html" name="send">
+                                        <input class="email_input requiredField username" id="username_ipt" name="sId" type="text" placeholder="用户名" >
+                                        <input class="email_input requiredField password" id="password_ipt" name="sPassword" type="password" placeholder="密码"><br />
+                                        <input class="email_submit email_margin_top submit" id="login_submit" type="submit" value="登录">
                                     </form>
                                 </c:if>
                             </div>
@@ -376,7 +388,7 @@
                     <div class="col-sm-12">
                         <!-- form section -->
                         <div id="form-wrapper">
-                            <form id="form" method="post" action="send.php" name="send">
+                            <form  method="post" action="send.php" name="send">
                                 <input class="email_input requiredField sId" id="sId" name="sId" type="text" placeholder="学号" >
                                 <input class="email_input requiredField sName" id="sName" name="sName" type="text" placeholder="姓名"><br />
                                 <input id="gender" name="sGender" type="radio" value="男"
@@ -409,7 +421,7 @@
                         <li id="scrollbar" >
                             <h3 class="btn_menu home btn  btn-lg"> 主页</h3>
                             <h3 class="btn_menu services btn  btn-lg " >考试</h3>
-                            <h3 class="btn_menu team_member btn  btn-lg" >登陆</h3>
+                            <h3 class="btn_menu team_member btn  btn-lg" id="login">登陆</h3>
                             <h3 class="btn_menu about_us btn  btn-lg " >关于</h3>
                             <h3 class="btn_menu contact_us btn  btn-lg" >注册</h3>
                         </li>
@@ -424,9 +436,9 @@
 ##  javascript All file include
 =============================================================================== -->
 
-<script src="${pageContext.request.contextPath}/staticfile/front/js/jquery-1.9.1.min.js"></script>	              	<!-- Main js file -->
+	              	<!-- Main js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/custom.js"></script>						   	<!-- Custom js file -->
-<script src="${pageContext.request.contextPath}/staticfile/front/js/form-contact.js"></script>						<!-- form-contact js file -->
+<%--<script src="${pageContext.request.contextPath}/staticfile/front/js/form-contact.js"></script>						<!-- form-contact js file -->--%>
 <script src="${pageContext.request.contextPath}/staticfile/front/js/jquery.slicknav.min.js"></script>				<!-- Slicknav js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/bootstrap.min.js"></script>						<!-- Bootstrap js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/owl.carousel.min.js"></script>					<!-- Carousel js file -->

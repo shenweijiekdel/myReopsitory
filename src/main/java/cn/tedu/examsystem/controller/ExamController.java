@@ -3,6 +3,7 @@ package cn.tedu.examsystem.controller;
 import cn.tedu.examsystem.pojo.*;
 import cn.tedu.examsystem.service.ExamService;
 import cn.tedu.examsystem.service.QuestionService;
+import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -109,8 +111,8 @@ public class ExamController {
         return "paper";
     }
     @RequestMapping("paperJudge.html")
-    public String paperJudge(Model model,String[] answers,int examId, HttpSession session){
-      examService.paperJudge(answers,examId,((Student)session.getAttribute("_CURRENT_STUDENT")).getsId());
+    public String paperJudge(Model model, @RequestParam(required = false) String[] answers, int examId, int questionNum,HttpSession session){
+      examService.paperJudge(answers,examId,questionNum,((Student)session.getAttribute("_CURRENT_STUDENT")).getsId());
         return "home";
     }
     @ResponseBody

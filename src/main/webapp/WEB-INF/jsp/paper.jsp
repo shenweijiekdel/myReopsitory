@@ -30,17 +30,45 @@
     <script src="${pageContext.request.contextPath}/staticfile/front/js/jquery-1.9.1.min.js"></script>
     <!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <script>
+        var timer;
         $(function () {
-            setInterval("time()",1000);
+           timer =  setInterval("time()",1000);
 
         })
         function time() {
             $.post("/exam/timeOut.html",function (data) {
                 $("#timer").html(data);
+                if (data <= 0){
+                    window.clearInterval(timer);
+                    formSubmit();
+                }
             });
+        }
+        function formSubmit() {
+            $("#queForm").submit();
         }
     </script>
     <style>
+        a:link,a:visited,a:default
+        {
+            display:block;
+            border-style: solid solid solid solid;
+            border-width: 1px;
+
+            color:rgba(255,255,255,1);
+            background-color:rgba(8,13,26,0.3);
+            width:100px;
+            text-align:center;
+            padding:5px;
+            text-decoration:none;
+            border-radius:10px 10px 10px 10px;
+        }
+        a:hover,a:active
+        {
+            background-color:rgba(230,230,230,0.3);
+            color: rgba(210,210,210,1);
+
+        }
         .myPanel{
             background-color: rgba(0,0,0,0.8);
             height: 700px;
@@ -74,6 +102,9 @@
         .myBtn{
 
         }
+        table{
+            font-size: 20px;
+        }
     </style>
 
 </head>
@@ -88,13 +119,13 @@
     剩余时间：
 <h4 id="timer"></h4>
 </div>
-<form action="${pageContext.request.contextPath}/exam/paperJudge.html" method="post">
+<form id="queForm" action="${pageContext.request.contextPath}/exam/paperJudge.html" method="post">
     <input type="hidden" value="${examId}" name="examId" class="input-group">
-    <input type="hidden" value="${sId}" name="sId">
     <div class="myPanel">
         <table class="table">
-            <c:set var="count" value="1"></c:set>
+            <c:set var="count" value="1"/>
             <c:forEach items="${questionList}" var="question">
+
                 <tr class="que">
                     <td  class="queNum">
                             ${count}.
@@ -103,32 +134,31 @@
                             ${question.pStem}
                     </td>
                 </tr>
-                <tr>
-                <td>
+
                 <c:forEach items="${question.options}" var="options">
+
                     <tr>
                         <td >
 
                         </td>
                         <td class="opt">
 
-                            <input name="answers" type="checkbox" value="${question.pId},${options.oId}">${options.oContent}
+                            <input name="answers" type="checkbox" value="${question.pId},${options.oId}">   ${options.oContent}
                         </td>
                     </tr>
                 </c:forEach>
-                </td>
-                <c:set var="count" value="${count + 1}" ></c:set>
+                <c:set var="count" value="${count + 1}" />
             </c:forEach>
+            <input type="hidden" name="questionNum" value="${count - 1}">
             <td></td>
-                <td>
-                    <input type="submit" value="交卷" class="" >
+                <td align="center">
+                    <a href="#" onclick="formSubmit()">交卷</a>
                 </td>
         </table>
 
     </div>
 
 </form>
-    <div style="clear:both;"></div>
 
 	              	<!-- Main js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/custom.js"></script>						   	<!-- Custom js file -->

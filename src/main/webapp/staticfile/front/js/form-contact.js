@@ -2,7 +2,8 @@
 
 // contact form
 $(document).ready(function() {
-	$('form#form').submit(function() {
+
+	/*$('form#form').submit(function() {
 	$('form#form .error').remove();
 	var hasError = false;
 	$('.requiredField').each(function() {
@@ -33,5 +34,5 @@ $(document).ready(function() {
     });
     }
     return false;
-    });
+    });*/
 });

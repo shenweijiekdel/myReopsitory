@@ -57,7 +57,7 @@ public class LoginController {
 				e.printStackTrace();
 				//把错误信息传回页面
 				model.addAttribute("errorInfo","学号或密码不正确！");
-				return "/login/login";
+				return "frontHome";
 			}
 		}
 		return "/login/login";
@@ -182,7 +182,7 @@ public class LoginController {
 		if (subject.isAuthenticated()) {
 			subject.logout();
 		}
-		return "redirect:/tologin.html";
+		return "redirect:/home.html";
 
 	}
 }

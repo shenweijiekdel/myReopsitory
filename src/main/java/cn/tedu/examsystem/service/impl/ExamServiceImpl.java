@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpSession;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +34,12 @@ public class ExamServiceImpl implements ExamService {
         return examMapper.findAllExam();
     }
 
-    public void paperJudge(String[] answers, int examId, int stuId) {
+    public void paperJudge(String[] answers, int examId, int questionNum, int stuId) {
+
+        if (answers == null){
+            scoreRegist(stuId,0);
+            return ;
+        }
         List<Answer> sAnswers = new ArrayList<Answer>();
 
         String[] que = new String[answers.length];
@@ -49,11 +53,11 @@ public class ExamServiceImpl implements ExamService {
 
 
 
-        List<Question> questions = questionMapper.findById(examId,sAnswers);
-        float eveScore = 100 / questions.size();
+        List<Question> aQuestions = questionMapper.findById(examId,sAnswers);
+        float eveScore = 100 /questionNum;
         float sScore = 0;
         boolean flag  = false;
-        for (Question question:questions
+        for (Question question:aQuestions
                 ) {
             List<Answer> qAnswers = question.getAnswers();
             List<Answer> sAnswer = new ArrayList<Answer>();
