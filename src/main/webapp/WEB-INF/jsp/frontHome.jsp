@@ -277,9 +277,41 @@
     =============================================================================== -->
 
     <div class="section" id="section2">	 <!-- Section2 -->
-        <c:if test="${empty _CURRENT_STUDENT}">
-            <h2>${_CURRENT_STUDENT.sName}</h2>
-        </c:if>
+
+
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="about_us_text">
+                                <h2>欢迎注册</h2>
+                                <h4>Welcome to login</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="about_us_text">
+                                <c:if test="${!empty _CURRENT_STUDENT}">
+                                    <h2>${_CURRENT_STUDENT.sName}</h2>
+                                </c:if>
+                                <c:if test="${empty _CURRENT_STUDENT}">
+                                    <form id="form" method="post" action="send.php" name="send">
+                                        <input class="email_input requiredField sId" id="username" name="username" type="text" placeholder="用户名" >
+                                        <input class="email_input requiredField sName" id="password" name="password" type="password" placeholder="密码"><br />
+                                        <button class="email_submit email_margin_top submit" type="submit" value="Submit">submit</button>
+                                    </form>
+                                </c:if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
 
     </div>  <!-- //End Section2 -->
 
@@ -334,7 +366,7 @@
                     <div class="col-sm-12">
                         <div class="contact_us_text">
                             <h2>欢迎注册</h2>			<!-- Page title -->
-                            <h4>We are coming soon</h4>
+                            <h4>Welcome to register</h4>
                         </div>
                     </div>
                 </div>
