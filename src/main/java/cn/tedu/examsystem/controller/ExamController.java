@@ -110,8 +110,8 @@ public class ExamController {
     }
     @RequestMapping("paperJudge.html")
     public String paperJudge(Model model,String[] answers,int examId, HttpSession session){
-      examService.paperJudge(answers,examId);
-        return null;
+      examService.paperJudge(answers,examId,((Student)session.getAttribute("_CURRENT_STUDENT")).getsId());
+        return "home";
     }
     @ResponseBody
     @RequestMapping("timeOut.html")

@@ -2,6 +2,7 @@ package cn.tedu.examsystem.mapper;
 
 import cn.tedu.examsystem.pojo.Exam;
 import cn.tedu.examsystem.pojo.Question;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface ExamMapper {
 
     void deleteExamById(int eId);
   Exam findExambyId(int eId);
+  void scoreRegist(@Param("stuId")int stuId, @Param("score") float score);
 }

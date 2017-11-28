@@ -4,23 +4,21 @@ import cn.tedu.examsystem.mapper.AnswerMapper;
 import cn.tedu.examsystem.mapper.ExamMapper;
 import cn.tedu.examsystem.mapper.OptionMapper;
 import cn.tedu.examsystem.mapper.QuestionMapper;
-import cn.tedu.examsystem.pojo.Answer;
-import cn.tedu.examsystem.pojo.Exam;
-import cn.tedu.examsystem.pojo.Option;
-import cn.tedu.examsystem.pojo.Question;
+import cn.tedu.examsystem.pojo.*;
 import cn.tedu.examsystem.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("ALL")
 @Service
-public class
-ExamServiceImpl implements ExamService {
+public class ExamServiceImpl implements ExamService {
     @Autowired
     private ExamMapper examMapper;
     @Autowired
@@ -37,7 +35,7 @@ ExamServiceImpl implements ExamService {
         return examMapper.findAllExam();
     }
 
-    public void paperJudge(String[] answers, int examId) {
+    public void paperJudge(String[] answers, int examId, int stuId) {
         List<Answer> sAnswers = new ArrayList<Answer>();
 
         String[] que = new String[answers.length];
@@ -48,11 +46,12 @@ ExamServiceImpl implements ExamService {
             sAnswers.add(sAnswer);
         }
 
-        int Score = 0;
+
 
 
         List<Question> questions = questionMapper.findById(examId,sAnswers);
-
+        float eveScore = 100 / questions.size();
+        float sScore = 0;
         boolean flag  = false;
         for (Question question:questions
                 ) {
@@ -66,10 +65,12 @@ ExamServiceImpl implements ExamService {
             Collections.sort(qAnswers);
             if (qAnswers.equals(sAnswer)){
                 System.out.println("对");
+                sScore += eveScore;
             }
             else
                 System.out.println("错");
         }
+        scoreRegist(stuId,Float.parseFloat(new  DecimalFormat("#.0").format(sScore)));
 
     }
 
@@ -79,7 +80,6 @@ ExamServiceImpl implements ExamService {
         List<Answer> answers;
         List<Option> options;
         List<Question> questions = exam.getQuestions();
-    System.out.println(questions);
         for (Question question:questions){
             if ((answers = question.getAnswers()).size() > 0)
             answerMapper.deleteAnswerByOid(answers);
@@ -90,5 +90,9 @@ ExamServiceImpl implements ExamService {
     if (questions.size() > 0)
         questionMapper.deleteQuestionByEid(questions);
         examMapper.deleteExamById(exam.geteId());
+    }
+
+    public void scoreRegist(int stuId, float score) {
+        examMapper.scoreRegist(stuId,score);
     }
 }

@@ -59,4 +59,7 @@
         </collection>
         </collection>
     </resultMap>
+    <update id="scoreRegist">
+        UPDATE student SET s_score=#{score} WHERE s_id=#{stuId}
+    </update>
 </mapper>

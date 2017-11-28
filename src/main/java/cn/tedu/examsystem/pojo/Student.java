@@ -7,7 +7,28 @@ public class Student {
 	private String sGender;
 	private String sClass;
 	private String sPassword;
-	 
+	private float sScore;
+
+	@Override
+	public String toString() {
+		return "Student{" +
+				"sId=" + sId +
+				", sName='" + sName + '\'' +
+				", sGender='" + sGender + '\'' +
+				", sClass='" + sClass + '\'' +
+				", sPassword='" + sPassword + '\'' +
+				", sScore=" + sScore +
+				'}';
+	}
+
+	public float getsScore() {
+		return sScore;
+	}
+
+	public void setsScore(float sScore) {
+		this.sScore = sScore;
+	}
+
 	public String getsPassword() {
 		return sPassword;
 	}
@@ -39,11 +60,6 @@ public class Student {
 	public void setsClass(String sClass) {
 		this.sClass = sClass;
 	}
-	@Override
-	public String toString() {
-		return "Student [sId=" + sId + ", sName=" + sName + ", sGender=" + sGender + ", sClass=" + sClass
-				+ ", sPassword=" + sPassword + "]";
-	}
-	
-	
+
+
 }
