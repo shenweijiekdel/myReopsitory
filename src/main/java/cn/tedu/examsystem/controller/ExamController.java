@@ -1,11 +1,10 @@
 package cn.tedu.examsystem.controller;
 
-import cn.tedu.examsystem.pojo.Answer;
-import cn.tedu.examsystem.pojo.Exam;
-import cn.tedu.examsystem.pojo.Option;
-import cn.tedu.examsystem.pojo.Question;
+import cn.tedu.examsystem.pojo.*;
 import cn.tedu.examsystem.service.ExamService;
 import cn.tedu.examsystem.service.QuestionService;
+import org.apache.ibatis.annotations.Param;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -25,6 +27,7 @@ public class ExamController {
     private QuestionService questionService;
     @Autowired
     private ExamService examService;
+    private int time = 200;
     @InitBinder
     public void initBinder(WebDataBinder binder) {
 
@@ -65,19 +68,19 @@ public class ExamController {
 
         examService.createExam(exam);
 
-        return "redirect:/exam/displayExam.html";
+        return "redirect:/exam/back/displayExam.html";
     }
-    @RequestMapping("displayExam.html")
+    @RequestMapping("back/displayExam.html")
     public String displayExam(Model model){
         List<Exam> exams = examService.displayExams();
         System.out.println(exams.size());
-        if (exams != null)
+        if (exams.size() > 0)
         model.addAttribute("exams",exams);
         return "back/backHome";
     }
     @RequestMapping("showExamInfo.html")
     public String showExamInfo(Model model,int examid){
-        List<Question> list = null;
+        List<Question> list;
         model.addAttribute("examId",examid);
         list =  questionService.findAll(examid);
         if (list != null)
@@ -87,8 +90,36 @@ public class ExamController {
     @RequestMapping("deleteExam.html")
     public String deleteExam(int examid,Model model){
         examService.deleteExam(examid);
-        return "redirect:/exam/displayExam.html";
+        return "redirect:/exam/back/displayExam.html";
     }
-
+    @RequestMapping("examList.html")
+    public String examList(Model model){
+        List<Exam> exams = examService.displayExams();
+        model.addAttribute("exams",exams);
+        return "frontHome";
+    }
+    @RequestMapping("questionList.html")
+    public String questionList(int examId,Model model){
+        List<Question>  questions = questionService.findAll(examId);
+        /*随即乱序集合*/
+        Collections.shuffle(questions);
+        for (Question q:questions){
+            Collections.shuffle(q.getOptions());
+        }
+        model.addAttribute("questionList",questions);
+        model.addAttribute("examId",examId);
+        return "paper";
+    }
+    @RequestMapping("paperJudge.html")
+    public String paperJudge(Model model, @RequestParam(required = false) String[] answers, int examId, int questionNum,HttpSession session){
+      examService.paperJudge(answers,examId,questionNum,((Student)session.getAttribute("_CURRENT_STUDENT")).getsId());
+        return "home";
+    }
+    @ResponseBody
+    @RequestMapping("timeOut.html")
+    public String timeOut(){
+       time --;
+       return time + "";
+    }
 
 }

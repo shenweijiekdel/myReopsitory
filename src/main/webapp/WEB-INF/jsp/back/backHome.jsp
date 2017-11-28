@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>layout 后台大布局 - Layui</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/layui/css/layui.css">
-    <link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css?t=1511048241366" media="all">
     <style>
         body{margin: 10px;}
         .demo-carousel{height: 200px; line-height: 200px; text-align: center;}

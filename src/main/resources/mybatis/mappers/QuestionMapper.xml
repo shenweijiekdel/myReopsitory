@@ -30,6 +30,16 @@
   LEFT JOIN t_answer ON t_option.o_id=t_answer.o_id
 WHERE e_id=#{eId}
     </select>
+<select id="findById" resultMap="queRM">
+     SELECT t_problem.p_id ppId,p_stem,e_id,t_option.o_id ooId,
+  o_content,t_option.p_id opId,a_id,t_answer.p_id apId,t_answer.o_id aoId FROM t_problem
+  LEFT JOIN t_option ON t_problem.p_id=t_option.p_id
+  LEFT JOIN t_answer ON t_option.o_id=t_answer.o_id
+WHERE e_id=#{eId} AND t_problem.p_id IN
+<foreach collection="answers"  item="answer" open="(" close=")" separator="," >
+    #{answer.pId}
+</foreach>
+</select>
     <resultMap id="queRM" type="cn.tedu.examsystem.pojo.Question">
         <id column="ppId" property="pId"/>
         <result column="p_stem" property="pStem"/>

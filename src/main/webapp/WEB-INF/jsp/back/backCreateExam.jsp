@@ -9,9 +9,16 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="../../../staticfile/js/jquery-1.6.2.js"></script>
+    <script>
+        function dateFunc() {
+            alert($("input[type='datetime-local']").val())
+
+        }
+    </script>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/exam/createExam.html" method="post">
+    <form action="${pageContext.request.contextPath}/exam/createExam.html" method="post" onsubmit="dateFunc()">
         <table>
             <tr>
                 <td>
