@@ -9,5 +9,4 @@ public interface ExamService {
     List<Exam> displayExams(Exam isOnline);
     void paperJudge(String[] answers, int examId, int questionNum, int sutId);
     void deleteExam(int examid);
-    void scoreRegist( int stuId, float score);
 }

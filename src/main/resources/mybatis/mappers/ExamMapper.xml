@@ -42,6 +42,10 @@
             LEFT JOIN t_answer ON t_option.o_id=t_answer.o_id
             WHERE t_exam.e_id=#{eId}
     </select>
+    <!--<select id="isTested" resultMap="cn.tedu.examsystem.pojo.Student">
+SELECT * FROM t_ses LEFT JOIN student ON t_ses.s_id=student.s_id
+WHERE e_id = 15
+    </select>-->
     <resultMap id="examAllRM" type="cn.tedu.examsystem.pojo.Exam">
         <id column="eeId" property="eId"/>
         <result column="eeExam" property="eExam"/>
@@ -66,7 +70,4 @@
         </collection>
         </collection>
     </resultMap>
-    <update id="scoreRegist">
-        UPDATE student SET s_score=#{score} WHERE s_id=#{stuId}
-    </update>
 </mapper>

@@ -37,7 +37,7 @@ public class ExamServiceImpl implements ExamService {
     public void paperJudge(String[] answers, int examId, int questionNum, int stuId) {
 
         if (answers == null){
-            scoreRegist(stuId,0);
+            scoreRegist(stuId,examId,0);
             return ;
         }
         List<Answer> sAnswers = new ArrayList<Answer>();
@@ -74,7 +74,7 @@ public class ExamServiceImpl implements ExamService {
             else
                 System.out.println("错");
         }
-        scoreRegist(stuId,Float.parseFloat(new  DecimalFormat("#.0").format(sScore)));
+        scoreRegist(stuId,examId,Float.parseFloat(new  DecimalFormat("#.0").format(sScore)));
 
     }
 
@@ -96,7 +96,7 @@ public class ExamServiceImpl implements ExamService {
         examMapper.deleteExamById(exam.geteId());
     }
 
-    public void scoreRegist(int stuId, float score) {
-        examMapper.scoreRegist(stuId,score);
+    public void scoreRegist(int stuId, int examId,float score) {
+        examMapper.scoreRegist(stuId,examId,score);
     }
 }

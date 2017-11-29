@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -27,7 +28,6 @@ public class ExamController {
     private QuestionService questionService;
     @Autowired
     private ExamService examService;
-    private int time = 200;
     @InitBinder
     public void initBinder(WebDataBinder binder) {
 
@@ -103,13 +103,14 @@ public class ExamController {
         return "frontHome";
     }
     @RequestMapping("questionList.html")
-    public String questionList(int examId,Model model){
+    public String questionList(int examId,int time,Model model,HttpSession session){
         List<Question>  questions = questionService.findAll(examId);
         /*随即乱序集合*/
         Collections.shuffle(questions);
         for (Question q:questions){
             Collections.shuffle(q.getOptions());
         }
+        session.setAttribute("testTimeMin",time * 60);
         model.addAttribute("questionList",questions);
         model.addAttribute("examId",examId);
         return "paper";
@@ -119,10 +120,16 @@ public class ExamController {
       examService.paperJudge(answers,examId,questionNum,((Student)session.getAttribute("_CURRENT_STUDENT")).getsId());
         return "home";
     }
+    @Test
+    public void a(){
+
+    }
     @ResponseBody
     @RequestMapping("timeOut.html")
-    public String timeOut(){
+    public String timeOut(HttpSession session){
+        int time = (Integer) session.getAttribute("testTimeMin");
        time --;
+       session.setAttribute("testTimeMin",time);
        return time + "";
     }
 

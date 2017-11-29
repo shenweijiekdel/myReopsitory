@@ -1,5 +1,8 @@
 package cn.tedu.examsystem.pojo;
 
+import java.util.List;
+import java.util.Map;
+
 public class Student {
 
 	private Integer sId;
@@ -7,7 +10,6 @@ public class Student {
 	private String sGender;
 	private String sClass;
 	private String sPassword;
-	private float sScore;
 
 	@Override
 	public String toString() {
@@ -17,17 +19,20 @@ public class Student {
 				", sGender='" + sGender + '\'' +
 				", sClass='" + sClass + '\'' +
 				", sPassword='" + sPassword + '\'' +
-				", sScore=" + sScore +
+				", stuExaScos=" + stuExaScos +
 				'}';
 	}
 
-	public float getsScore() {
-		return sScore;
+	public List<StuExaSco> getStuExaScos() {
+		return stuExaScos;
 	}
 
-	public void setsScore(float sScore) {
-		this.sScore = sScore;
+	public void setStuExaScos(List<StuExaSco> stuExaScos) {
+		this.stuExaScos = stuExaScos;
 	}
+
+	private List<StuExaSco> stuExaScos;
+
 
 	public String getsPassword() {
 		return sPassword;

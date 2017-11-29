@@ -2,9 +2,18 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.tarena.ht.mapper.StudentMapper">
-
-	 
+<mapper namespace="cn.tedu.examsystem.mapper.StudentMapper">
+<select id="findOneBySid" resultMap="stuRm">
+    select
+     student.s_id stuSid,s_name,s_gender,s_class,s_password,t_ses.s_id stsSid,e_id,score
+     from student LEFT JOIN t_ses ON student.s_id = t_ses.s_id WHERE student.s_id=#{sId}
+</select>
+    <resultMap id="stuRm" type="cn.tedu.examsystem.pojo.Student" autoMapping="true">
+        <result column="stuSid" property="sId"/>
+        <collection property="stuExaScos"  ofType="cn.tedu.examsystem.pojo.StuExaSco" autoMapping="true">
+            <result column="stsSid" property="sId"/>
+        </collection>
+    </resultMap>
 
 </mapper>
  

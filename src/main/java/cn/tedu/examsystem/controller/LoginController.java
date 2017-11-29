@@ -38,18 +38,18 @@ public class LoginController {
 		return "/login/login";
 	}
 	@RequestMapping("/login.html")
-	public String Login(String sId,String sPassword,Model model,HttpSession session){
+	public String Login(String stuSid,String sPassword,Model model,HttpSession session){
 
 		Subject currentUser = SecurityUtils.getSubject();
 		if (!currentUser.isAuthenticated()) {
-			CustomizedToken customizedToken = new CustomizedToken(sId, sPassword, LoginType.Student.toString());
+			CustomizedToken customizedToken = new CustomizedToken(stuSid, sPassword, LoginType.Student.toString());
 			customizedToken.setRememberMe(false);
 			try {
 				//登录，进入studentRealm中
 				currentUser.login(customizedToken);
 				//得到登录成功的Student
 				Student student = (Student)currentUser.getPrincipal();
-
+				System.out.println(student);
 				session.setAttribute("_CURRENT_STUDENT", student);
 
 				return "redirect:/home.html";
