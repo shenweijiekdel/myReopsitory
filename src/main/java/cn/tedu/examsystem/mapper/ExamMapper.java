@@ -9,7 +9,7 @@ import java.util.List;
 public interface ExamMapper {
     int saveExam(Exam exam);
     int saveQuestion(Question question);
-    List<Exam> findAllExam();
+    List<Exam> findAllExam(Exam isOnline);
 
     void deleteExamById(int eId);
   Exam findExambyId(int eId);

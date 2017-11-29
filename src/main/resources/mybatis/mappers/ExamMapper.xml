@@ -23,13 +23,19 @@
     </trim>
 </insert>
     <select id="findAllExam" resultMap="examRM">
-        SELECT * FROM t_exam;
+        SELECT * FROM t_exam
+        <where>
+
+
+              <if test="isOnline != null">is_online=#{isOnline}</if>
+
+        </where>
     </select>
     <resultMap id="examRM" type="cn.tedu.examsystem.pojo.Exam">
         <id column="e_id" property="eId"/>
     </resultMap>
  <select id="findExambyId" resultMap="examAllRM">
-            SELECT t_exam.e_id eeId,t_exam.e_exam eeExam,e_time eTime,is_online isOnline,t_problem.p_id ppId,p_stem,t_problem.e_id peId ,t_option.o_id ooId,
+            SELECT t_exam.e_id eeId,t_exam.e_exam eeExam,e_time eTime,is_online isOnline,t_exam.test_time_min testTimeMin,t_problem.p_id ppId,p_stem,t_problem.e_id peId ,t_option.o_id ooId,
             o_content,t_option.p_id opId,a_id,t_answer.p_id apId,t_answer.o_id aoId FROM t_exam
             LEFT JOIN t_problem ON t_exam.e_id=t_problem.e_id
             LEFT JOIN t_option ON t_problem.p_id=t_option.p_id
@@ -41,6 +47,7 @@
         <result column="eeExam" property="eExam"/>
         <result column="eTime" property="eTime"/>
         <result column="isOnline" property="isOnline"/>
+        <result column="testTimeMin" property="testTimeMin"/>
         <collection property="questions" ofType="cn.tedu.examsystem.pojo.Question">
 
 

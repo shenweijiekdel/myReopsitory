@@ -72,7 +72,9 @@ public class ExamController {
     }
     @RequestMapping("back/displayExam.html")
     public String displayExam(Model model){
-        List<Exam> exams = examService.displayExams();
+        Exam exam = new Exam();
+        exam.setOnline(null);
+        List<Exam> exams = examService.displayExams(exam);
         System.out.println(exams.size());
         if (exams.size() > 0)
         model.addAttribute("exams",exams);
@@ -94,7 +96,9 @@ public class ExamController {
     }
     @RequestMapping("examList.html")
     public String examList(Model model){
-        List<Exam> exams = examService.displayExams();
+        Exam exam = new Exam();
+        exam.setOnline(true);
+        List<Exam> exams = examService.displayExams(exam);
         model.addAttribute("exams",exams);
         return "frontHome";
     }

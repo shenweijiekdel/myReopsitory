@@ -30,8 +30,8 @@ public class ExamServiceImpl implements ExamService {
         examMapper.saveExam(exam);
     }
 
-    public List<Exam> displayExams() {
-        return examMapper.findAllExam();
+    public List<Exam> displayExams(Exam isOnline) {
+        return examMapper.findAllExam(isOnline);
     }
 
     public void paperJudge(String[] answers, int examId, int questionNum, int stuId) {

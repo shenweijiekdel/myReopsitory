@@ -189,6 +189,7 @@
                    <tr align="center">
                        <th>考试名称</th>
                        <th>开考时间</th>
+                       <th>考试时长(分钟)</th>
                        <th>开始考试</th>
                    </tr>
                    <c:forEach items="${exams}" var="exam">
@@ -198,6 +199,9 @@
                            </td>
                            <td>
                                ${exam.eTime}
+                           </td>
+                           <td>
+                               ${exam.testTimeMin}
                            </td>
 
                                <td>

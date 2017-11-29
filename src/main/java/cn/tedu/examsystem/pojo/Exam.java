@@ -10,8 +10,19 @@ public class Exam {
     private int eId;
     private String eExam;
     private Date eTime;
-    private boolean isOnline;
-    private List<Question> questions;
+    private Boolean isOnline;
+    private int testTimeMin;
+    public Boolean getOnline() {
+        return isOnline;
+    }
+
+    public int getTestTimeMin() {
+        return testTimeMin;
+    }
+
+    public void setTestTimeMin(int testTimeMin) {
+        this.testTimeMin = testTimeMin;
+    }
 
     @Override
     public String toString() {
@@ -20,9 +31,13 @@ public class Exam {
                 ", eExam='" + eExam + '\'' +
                 ", eTime=" + eTime +
                 ", isOnline=" + isOnline +
+                ", testTimeMin=" + testTimeMin +
                 ", questions=" + questions +
                 '}';
     }
+
+
+    private List<Question> questions;
 
     public Date geteTime() {
         return eTime;
@@ -32,11 +47,7 @@ public class Exam {
         this.eTime = eTime;
     }
 
-    public boolean isOnline() {
-        return isOnline;
-    }
-
-    public void setOnline(boolean online) {
+    public void setOnline(Boolean online) {
         isOnline = online;
     }
 
