@@ -8,10 +8,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      student.s_id stuSid,s_name,s_gender,s_class,s_password,t_ses.s_id stsSid,e_id,score
      from student LEFT JOIN t_ses ON student.s_id = t_ses.s_id WHERE student.s_id=#{sId}
 </select>
-    <resultMap id="stuRm" type="cn.tedu.examsystem.pojo.Student" autoMapping="true">
+    <resultMap id="stuRm" type="cn.tedu.examsystem.pojo.Student"> <!--不知道为啥autoMappingstuExaScos只能进去一个-->
         <result column="stuSid" property="sId"/>
-        <collection property="stuExaScos"  ofType="cn.tedu.examsystem.pojo.StuExaSco" autoMapping="true">
+        <result column="s_name" property="sName"/>
+        <result column="s_gender" property="sGender"/>
+        <result column="s_class" property="sClass"/>
+        <result column="s_password" property="sPassword"/>
+        <collection property="stuExaScos"  ofType="cn.tedu.examsystem.pojo.StuExaSco">
             <result column="stsSid" property="sId"/>
+            <result column="e_id" property="eId"/>
+            <result column="score" property="score"/>
         </collection>
     </resultMap>
 

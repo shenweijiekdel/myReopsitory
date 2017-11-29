@@ -56,7 +56,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/front/css/style2.css"/>							<!-- Style css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/front/css/responsive.css" media="all" />			<!-- Responsive css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/front/css/preloder.css" media="all" />			<!-- Preloder css -->
+
     <!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+
+    <script>
+        function onsubmit() {
+            
+        }
+    </script>
 </head>
 <body>
 <!-- loader-wrapper -->
@@ -104,7 +111,7 @@
                 <div class="col-sm-12">
                     <div class="home_area_text">
                         <h2>欢迎进入在线考试系统</h2> <!-- Page title -->
-                        <h4>我们将为您提供考试服务</h4>
+                        <h4>Welcom to test online system</h4>
                     </div>
                 </div>
             </div>
@@ -206,15 +213,24 @@
 
                                <td>
                                    <div>
-                                       <c:if test="${empty _CURRENT_STUDENT.stuExaScos}">
-                                           <a href="${pageContext.request.contextPath}/exam/questionList.html?examId=${exam.eId}&time=${exam.testTimeMin}">开始考试</a>
-                                       </c:if>
+
+
                                        <c:if test="${!empty _CURRENT_STUDENT.stuExaScos}">
                                            <c:forEach items="${_CURRENT_STUDENT.stuExaScos}" var="ses">
                                                <c:if test="${ses.eId == exam.eId}">
-                                                   ${ses.score}
+
+                                                   <c:set var="flag" value="${ses.score}"/>
                                                </c:if>
                                            </c:forEach>
+                                           <c:if test="${flag != null}">
+                                               ${flag}
+                                           </c:if>
+
+
+                                            <c:if test="${flag == null}">
+                                                <a href="${pageContext.request.contextPath}/exam/questionList.html?examId=${exam.eId} &time=${exam.testTimeMin}">开始考试</a>
+                                            </c:if>
+                                           <c:remove var="flag"/>
                                        </c:if>
                                    </div>
                                </td>
@@ -401,16 +417,18 @@
                     <div class="col-sm-12">
                         <!-- form section -->
                         <div id="form-wrapper">
-                            <form  method="post" action="send.php" name="send">
+                            <form  method="post" action="${pageContext.request.contextPath}/regist.html" name="send">
                                 <input class="email_input requiredField sId" id="sId" name="sId" type="text" placeholder="学号" >
                                 <input class="email_input requiredField sName" id="sName" name="sName" type="text" placeholder="姓名"><br />
                                 <input id="gender" name="sGender" type="radio" value="男"
                                                checked="checked" />男 <input id="gender2" name="sGender"
                                                                             type="radio" value="女" />女<br/>
-
-
                                 <input class="email_input requiredField subject" name="sClass" type="text" placeholder="班级" >
-                                <button class="email_submit email_margin_top submit" type="submit" value="Submit">submit</button>
+
+
+                                <input class="email_input requiredField subject" name="sPassword" type="password" placeholder="密码" >
+                                <input class="email_input requiredField subject" name="sPassword2" type="password" placeholder="确认密码" >
+                                <input class="email_submit email_margin_top submit" type="submit" value="注册">
                             </form>
                         </div>
                         <!-- end form section -->
