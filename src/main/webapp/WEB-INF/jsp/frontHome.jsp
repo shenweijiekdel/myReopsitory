@@ -42,6 +42,9 @@
     }
 </style>
     <!--=============== Include all css file  ===============-->
+    <script src="${pageContext.request.contextPath}/staticfile/front/js/form-contact.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath }/staticfile/js/jquery.validate.js"></script>
     <script src="${pageContext.request.contextPath}/staticfile/front/js/jquery-1.9.1.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/front/css/animate.css" media="all" />            <!-- Animate css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/front/css/font-awesome.min.css" media="all" />   <!-- Font awesome css -->
@@ -128,8 +131,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="home_area_text">
-                        <h1>您可以先登录然后查看你的考试成绩</h1> <!-- Page title -->
-                        <h4>出门左转</h4>
+                        <h2>出门右转</h2>
+                        <h4>您可以先登录然后查看你的考试成绩</h4> <!-- Page title -->
+
                     </div>
                 </div>
             </div>
@@ -247,9 +251,9 @@
 
                                             <c:if test="${flag == null}">
                                                 <a href="#" onclick="startExam(${exam.eId},${exam.testTimeMin})">开始考试</a>
-
+                                            </c:if>
                                            <c:remove var="flag"/>
-                                       </c:if>
+
                                    </div>
                                </td>
 
@@ -399,7 +403,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <p class="about_us_p" >经过5天的努力终于有点样子了</p>
-                        <p class="under_p" >Lorem Ipsum is simply dummy text of the printing and types etting industry. Lorem Ipsum has been the industry's standard dummy text ever since the containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p class="under_p" >我们的团队是个很努力的团队。</p>
                     </div>
                 </div>
             </div>
@@ -426,12 +430,14 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <!-- form section -->
                         <div id="form-wrapper">
                             <form  method="post" action="${pageContext.request.contextPath}/regist.html" name="send">
-                                <input class="email_input requiredField sId" id="sId" name="sId" type="text" placeholder="学号" >
+                                <input class="email_input requiredField sId" id="sId" name="sId" type="text" placeholder="学号" ><br />
+                                <span id="sId_msg" class="ss"></span>
                                 <input class="email_input requiredField sName" id="sName" name="sName" type="text" placeholder="姓名"><br />
+                                <span></span>
                                 <input id="gender" name="sGender" type="radio" value="男"
                                                checked="checked"/>男<input id="gender2" name="sGender"
                                                                             type="radio" value="女" />女<br/>
@@ -491,7 +497,7 @@
 
 	              	<!-- Main js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/custom.js"></script>						   	<!-- Custom js file -->
-<script src="${pageContext.request.contextPath}/staticfile/front/js/form-contact.js"></script>						<!-- form-contact js file -->
+						<!-- form-contact js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/jquery.slicknav.min.js"></script>				<!-- Slicknav js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/bootstrap.min.js"></script>						<!-- Bootstrap js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/owl.carousel.min.js"></script>					<!-- Carousel js file -->

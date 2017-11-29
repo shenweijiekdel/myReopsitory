@@ -67,7 +67,7 @@
             ,element = layui.element; //元素操作
 
         //向世界问个好
-        layer.msg('Hello World');
+      /*  layer.msg('Hello World');*/
 
         //监听Tab切换
         element.on('tab(demo)', function(data){

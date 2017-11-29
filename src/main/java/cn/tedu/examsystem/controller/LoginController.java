@@ -120,7 +120,7 @@ public class LoginController {
 				//在首页设置 欢迎** 
 				session.setAttribute("_CURRENT_ADMIN", admin);
 
-				return "back/backHome";
+				return "redirect:/tobackHome";
 			} catch (AuthenticationException e) {
 				e.printStackTrace();
 

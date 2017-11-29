@@ -16,14 +16,14 @@ public class HomeController {
         return "redirect:/exam/examList.html";
 
     }
-    @RequestMapping("/createExam.html")
+    @RequestMapping("/tobackHome")
+    public String toBackHomt(){
+        return "back/backHome";
+    }
+    @RequestMapping("/back/createExam.html")
     public String createExam(){
 
         return "back/backCreateExam";
     }
 
-    @RequestMapping("/table.html")
-    public String table(){
-        return "back/table";
-    }
 }

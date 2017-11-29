@@ -47,5 +47,9 @@ public class StudentServiceImpl implements StudentService {
 
 		return studentMapper.findScore();
 	}
-	
+
+	public List<Student> findByEid(int eId) {
+		return studentMapper.findByEid(eId);
+	}
+
 }

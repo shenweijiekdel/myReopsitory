@@ -117,6 +117,7 @@ public class ExamController {
         Exam exam = new Exam();
         exam.setOnline(true);
         List<Exam> exams = examService.displayExams(exam);
+        System.out.println();
         model.addAttribute("exams",exams);
         if (!Msg.equals("none"))
             model.addAttribute("Msg",Msg);
@@ -170,20 +171,12 @@ public class ExamController {
 
     /*修改为上线状态*/
     @RequestMapping("back/isOnlineExam.html")
-    public String isOnlineExam(Integer examid){
+    public String isOnlineExam(Integer examid,boolean isBoolean){
         if (examid!=null){
-            examService.isOnlineExam(true,examid);
+            examService.isOnlineExam(!isBoolean,examid);
         }
         return "redirect:/exam/back/displayExam.html";
     }
 
-    /*修改为下线状态*/
-    @RequestMapping("back/notOnlineExam.html")
-    public String notOnlineExam(Integer examid){
-        if (examid!=null){
-            examService.isOnlineExam(false,examid);
-        }
-        return "redirect:/exam/back/displayExam.html";
-    }
 
 }

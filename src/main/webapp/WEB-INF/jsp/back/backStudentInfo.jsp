@@ -46,7 +46,7 @@
                         <td>${s.sName}</td>
                         <td>${s.sGender}</td>
                         <td>${s.sClass}</td>
-                        <td><a class="layui-btn layui-btn-danger layui-btn-xs" href="/deleteStudent.html?sid=${s.sId}"  lay-event="del">删除</a></td>
+                        <td><a class="layui-btn layui-btn-danger layui-btn-xs" href="${pageContext.request.contextPath}/back/deleteStudent.html?sid=${s.sId}"  lay-event="del">删除</a></td>
                     </tr>
 
                 </c:forEach>
@@ -81,7 +81,7 @@
             ,element = layui.element; //元素操作
 
         //向世界问个好
-        layer.msg('Hello World');
+       /* layer.msg('Hello World');*/
 
         //监听Tab切换
         element.on('tab(demo)', function(data){

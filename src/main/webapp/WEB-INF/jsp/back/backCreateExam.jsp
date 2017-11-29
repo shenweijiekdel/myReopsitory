@@ -44,7 +44,7 @@
         <div style="padding: 15px;">
         <!-- 内容主体区域 -->
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <form action="${pageContext.request.contextPath}/exam/createExam.html" method="post" onsubmit="dateFunc()">
+        <form action="${pageContext.request.contextPath}/exam/back/createExam.html" method="post" onsubmit="dateFunc()">
             <table class="mytable">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -117,7 +117,7 @@
             ,element = layui.element; //元素操作
 
         //向世界问个好
-        layer.msg('Hello World');
+        /*layer.msg('Hello World');*/
 
         //监听Tab切换
         element.on('tab(demo)', function(data){

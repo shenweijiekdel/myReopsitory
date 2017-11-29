@@ -75,6 +75,7 @@
 				<!-- anon:放行 authc拦截 -->
                 /exam/questionList.html=authc
                 /exam/back/**=authc
+                /back/**=authc
 				<!--/**=anon-->
 				<!-- /login.action=anon
 				/regist.action=anon -->

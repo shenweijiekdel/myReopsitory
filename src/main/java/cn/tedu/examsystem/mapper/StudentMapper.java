@@ -25,4 +25,5 @@ public interface StudentMapper {
 
 	@Select("select * from t_ses ")
 	public List<StuExaSco> findScore();
+	public List<Student> findByEid(int eId);
 }

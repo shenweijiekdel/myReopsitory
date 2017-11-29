@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DownPOI">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/DownPOI.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

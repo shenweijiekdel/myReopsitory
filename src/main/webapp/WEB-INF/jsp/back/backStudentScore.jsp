@@ -34,25 +34,42 @@
         <table class="layui-table" id="test" lay-filter="demo">
             <thead>
             <tr>
-                <th class="layui-table-header">学生ID</th>
-                <th class="layui-table-header">考试ID</th>
-                <th class="layui-table-header">学生成绩</th>
+
+                <th class="layui-table-header">学生姓名</th>
+                <th class="layui-table-header">学生性别</th>
+                <th class="layui-table-header">所在班级</th>
+                <th class="layui-table-header">考试成绩</th>
+
             </tr>
             </thead>
-            <c:forEach items="${studentScore}" var="ss">
-                <tr>
-                    <td>${ss.sId}</td>
-                    <td>${ss.eId}</td>
-                    <td>${ss.score}</td>
-                </tr>
 
-            </c:forEach>
+            <c:if test="${!empty student}" >
+                <tr>
+                    <td colspan="4" align="center"> <c:if test="${empty student}" >
+                        <h4>成绩单是空的</h4>
+                    </c:if></td>
+                </tr>
+                <c:forEach items="${student}" var="stu">
+                    <tr>
+                        <td>${stu.sName}</td>
+                        <td>${stu.sGender}</td>
+                        <td>${stu.sClass}</td>
+                        <td>${stu.stuExaScos.get(0).score}</td>
+                    </tr>
+
+                </c:forEach>
+                <tr>
+                    <td colspan="3" align="center">
+                        <a href="${pageContext.request.contextPath }/back/scoreListPrint.html?examId=${examId}" class="layui-btn">下载成绩单</a>
+                    </td>
+                </tr>
+            </c:if>
+
         </table>
     </div>
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © layui.com - 底部固定区域
     </div>
 </div>
 <script src="../../../staticfile/layui/layui.js"></script>
@@ -78,7 +95,7 @@
             ,element = layui.element; //元素操作
 
         //向世界问个好
-        layer.msg('Hello World');
+     /*   layer.msg('Hello World');*/
 
         //监听Tab切换
         element.on('tab(demo)', function(data){

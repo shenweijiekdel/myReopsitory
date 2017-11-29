@@ -24,4 +24,5 @@ public interface StudentService {
 	public void deleteStudent(Integer sid);
 
 	public List<StuExaSco> findScore();
+	public List<Student> findByEid(int eId);
 }

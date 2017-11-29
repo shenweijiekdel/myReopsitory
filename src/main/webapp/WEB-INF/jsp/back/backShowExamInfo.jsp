@@ -80,15 +80,15 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">考试管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/createExam.html">添加考试</a></dd>
-                        <dd><a href="/exam/back/displayExam.html">查询考试</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/back/createExam.html">添加考试</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/exam/back/displayExam.html">查询考试</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">学生管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/studentInfo.html">学生信息</a></dd>
-                        <dd><a href="/studentScore.html">学生分数</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/back/studentInfo.html">学生信息</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/back/studentScore.html">学生分数</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -160,7 +160,7 @@
             ,element = layui.element; //元素操作
 
         //向世界问个好
-        layer.msg('Hello World');
+        /*layer.msg('Hello World');*/
 
         //监听Tab切换
         element.on('tab(demo)', function(data){
