@@ -15,10 +15,7 @@
     <title>智能考试系统后台</title>
     <script src="../../../staticfile/js/jquery-1.6.2.js"></script>
     <script>
-        function dateFunc() {
-            alert($("input[type='datetime-local']").val())
 
-        }
     </script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/layui/css/layui.css">
     <style>
