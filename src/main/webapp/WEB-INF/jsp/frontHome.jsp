@@ -63,6 +63,14 @@
         confirm("您点击了开始考试按钮，请确认浏览器处于最大化状态并且一切准备就绪，否则您将不能对浏览器进行大小调整");
         location.href="${pageContext.request.contextPath}/exam/questionList.html?examId="+examId + "&time=" + time;
     }
+    function loginAdm() {
+        $("#loginForm").attr("action","${pageContext.request.contextPath}/adminLogin.html");
+     return true;
+    }
+    function loginStu() {
+        $("#loginForm").attr("action","${pageContext.request.contextPath}/login.html");
+        return true;
+    }
 </script>
 </head>
 <body>
@@ -351,11 +359,11 @@
                                 </c:if>
                                 <c:if test="${empty _CURRENT_STUDENT}">
                                     <div id="msg">${errorInfo}</div>
-                                    <form id="form" method="post" action="${pageContext.request.contextPath}/login.html" name="send"> <br />
+                                    <form id="loginForm" method="post" action="${pageContext.request.contextPath}/login.html" name="send"> <br />
                                         <input class="email_input requiredField username" id="username_ipt" name="username" type="text" placeholder="用户名" ><br />
                                         <input class="email_input requiredField password" id="password_ipt" name="password" type="password" placeholder="密码"><br />
-                                        <button class="email_submit email_margin_top submit" id="login_submit_stu" type="submit" value="login_stu">学生  登录</button>
-                                        <button class="email_submit email_margin_top submit" id="login_submit_admin" type="submit" value="login_admin">管理员登录</button>
+                                        <button class="email_submit email_margin_top submit" id="login_submit_stu" type="submit" value="login_stu" onclick="loginStu()">学生  登录</button>
+                                        <button class="email_submit email_margin_top submit" id="login_submit_admin" type="submit" value="login_admin" onclick="loginAdm()">管理员登录</button>
                                     </form>
                                 </c:if>
                             </div>

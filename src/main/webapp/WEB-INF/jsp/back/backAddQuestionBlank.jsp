@@ -189,7 +189,7 @@
 
     <div class="layui-body" align="center">
         <!-- 内容主体区域 -->
-        <form method="post" action="${pageContext.request.contextPath}/exam/addQuestionBlank.html">
+        <form method="post" action="${pageContext.request.contextPath}/exam/back/displayExam.html">
         <input type="hidden" value="${examId}" name="examId">
         <table class="layui-table">
         <tr>

@@ -34,10 +34,6 @@ public class LoginController {
 	/*
 		學生登陸
 	 */
-	@RequestMapping("/tologin.html")
-	public String toLogin(){
-		return "/login/login";
-	}
 	@RequestMapping("/login.html")
 	public String Login(String username,String password,Model model,HttpSession session){
 
@@ -61,7 +57,7 @@ public class LoginController {
 				return "frontHome";
 			}
 		}
-		return "/login/login";
+		return "frontHome";
 	}
 	/*
 		學生註冊
@@ -121,15 +117,15 @@ public class LoginController {
 				//在首页设置 欢迎** 
 				session.setAttribute("_CURRENT_ADMIN", admin);
 
-				return "redirect:/home.html";
+				return "back/backHome";
 			} catch (AuthenticationException e) {
 				e.printStackTrace();
 
-				model.addAttribute("errorInfo","用户名或密码不正确！");
-				return "/login/login";
+				model.addAttribute("errorInfo",e.getMessage());
+				return "frontHome";
 			}
 		}
-		return "/login/login";
+		return "frontHome";
 	}
 
 

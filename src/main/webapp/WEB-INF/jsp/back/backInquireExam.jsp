@@ -92,12 +92,12 @@
                         <td>${exam.eExam}</td>
                         <td>${exam.eTime}</td>
                         <td><a class="layui-btn layui-btn-xs" href="/exam/showExamInfo.html?examid=${exam.eId}" lay-event="edit">编辑</a></td>
-                        <td><a class="layui-btn layui-btn-danger layui-btn-xs" href="/exam/deleteExam.html?examid=${exam.eId}"  lay-event="del">删除</a></td>
+                        <td><a class="layui-btn layui-btn-danger layui-btn-xs" href="/exam/back/deleteExam.html?examid=${exam.eId}"  lay-event="del">删除</a></td>
                         <td><div>
-                            <a href="${pageContext.request.contextPath}/exam/isOnlineExam.html?examid=${exam.eId}">上传</a>
+                            <a href="${pageContext.request.contextPath}/exam/back/isOnlineExam.html?examid=${exam.eId}">上传</a>
                         </div></td>
                         <td><div>
-                            <a href="${pageContext.request.contextPath}/exam/notOnlineExam.html?examid=${exam.eId}">下线</a>
+                            <a href="${pageContext.request.contextPath}/exam/back/notOnlineExam.html?examid=${exam.eId}">下线</a>
                         </div></td>
                     </tr>
 

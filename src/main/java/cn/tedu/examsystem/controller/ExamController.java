@@ -37,7 +37,8 @@ public class ExamController {
         dateFormat.setLenient(true);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
-    @RequestMapping("addQuestionBlank.html")
+    /*后台添加题目*/
+    @RequestMapping("back/addQuestionBlank.html")
     public String addQuestionBlank(int examId,Question question,String[] questionOption,int[] questionAnswer,Model model){
         System.out.println(examId);
         System.out.println(question);
@@ -69,6 +70,8 @@ public class ExamController {
         questionService.putQuestionIntoBlank(question);
         return "redirect:/exam/showExamInfo.html?examid=" + question.geteId();
     }
+
+    /*后台创建考试*/
     @RequestMapping("createExam.html")
     public String createExam(Exam exam,Model model){
 
@@ -76,6 +79,8 @@ public class ExamController {
 
         return "redirect:/exam/back/displayExam.html";
     }
+
+    /*后台显示考试*/
     @RequestMapping("back/displayExam.html")
     public String displayExam(Model model){
         Exam exam = new Exam();
@@ -86,6 +91,8 @@ public class ExamController {
             model.addAttribute("exams",exams);
         return "back/backInquireExam";
     }
+
+    /*后台显示题目*/
     @RequestMapping("showExamInfo.html")
     public String showExamInfo(Model model,int examid){
         List<Question> list;
@@ -95,11 +102,15 @@ public class ExamController {
             model.addAttribute("questions",list);
         return "back/backShowExamInfo";
     }
-    @RequestMapping("deleteExam.html")
+
+    /*后台删除考试*/
+    @RequestMapping("back/deleteExam.html")
     public String deleteExam(int examid,Model model){
         examService.deleteExam(examid);
         return "redirect:/exam/back/displayExam.html";
     }
+
+    /*前台主页*/
     @RequestMapping("examList.html")
     public String examList(Model model,@RequestParam(required = false,defaultValue = "none")String Msg){
         System.out.println(Msg);
@@ -111,6 +122,8 @@ public class ExamController {
             model.addAttribute("Msg",Msg);
         return "frontHome";
     }
+
+    /*答题页面paper.jsp*/
     @RequestMapping("questionList.html")
     public String questionList(int examId,int time,Model model,HttpSession session){
         List<Question>  questions = questionService.findAll(examId);
@@ -124,6 +137,7 @@ public class ExamController {
         model.addAttribute("examId",examId);
         return "paper";
     }
+    /*判卷*/
     @RequestMapping("paperJudge.html")
     public String paperJudge(Model model, @RequestParam(required = false) String[] answers, int examId, int questionNum,HttpSession session){
         System.out.println(questionNum);
@@ -143,6 +157,8 @@ public class ExamController {
     public void a(){
 
     }
+
+    /*前台计时器*/
     @ResponseBody
     @RequestMapping("timeOut.html")
     public String timeOut(HttpSession session){
@@ -152,7 +168,8 @@ public class ExamController {
        return time + "";
     }
 
-    @RequestMapping("isOnlineExam.html")
+    /*修改为上线状态*/
+    @RequestMapping("back/isOnlineExam.html")
     public String isOnlineExam(Integer examid){
         if (examid!=null){
             examService.isOnlineExam(true,examid);
@@ -160,7 +177,8 @@ public class ExamController {
         return "redirect:/exam/back/displayExam.html";
     }
 
-    @RequestMapping("notOnlineExam.html")
+    /*修改为下线状态*/
+    @RequestMapping("back/notOnlineExam.html")
     public String notOnlineExam(Integer examid){
         if (examid!=null){
             examService.isOnlineExam(false,examid);

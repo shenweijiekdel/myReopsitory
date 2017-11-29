@@ -69,16 +69,18 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager"></property>
 		<!-- 设置登录地址：当用户没有登录，访问非登录页面时指定的请求地址 此地址会自动放行 -->
-		<property name="loginUrl" value="/tologin.html"></property>
+		<property name="loginUrl" value="/home.html"></property>
 		<property name="filterChainDefinitions">
 			<value>
 				<!-- anon:放行 authc拦截 -->
-				/**=anon
+                /exam/questionList.html=authc
+                /exam/back/**=authc
+				<!--/**=anon-->
 				<!-- /login.action=anon
 				/regist.action=anon -->
 				
 				<!-- 放行所有的静态资源文件 -->
-				<!-- /staticfile/** = anon -->
+				/staticfile/** = anon
 				<!-- /*代表拦截所有的请求 /**代表拦截所有请求和所有静态文件 -->
 				<!-- /**=authc -->
 			</value>
