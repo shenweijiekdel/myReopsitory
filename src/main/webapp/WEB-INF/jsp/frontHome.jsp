@@ -190,7 +190,7 @@
                        <th>考试名称</th>
                        <th>开考时间</th>
                        <th>考试时长(分钟)</th>
-                       <th>开始考试</th>
+                       <th>您的分数</th>
                    </tr>
                    <c:forEach items="${exams}" var="exam">
                        <tr>
@@ -206,7 +206,16 @@
 
                                <td>
                                    <div>
-                                   <a href="${pageContext.request.contextPath}/exam/questionList.html?examId=${exam.eId}">开始考试</a>
+                                       <c:if test="${empty _CURRENT_STUDENT.stuExaScos}">
+                                           <a href="${pageContext.request.contextPath}/exam/questionList.html?examId=${exam.eId}&time=${exam.testTimeMin}">开始考试</a>
+                                       </c:if>
+                                       <c:if test="${!empty _CURRENT_STUDENT.stuExaScos}">
+                                           <c:forEach items="${_CURRENT_STUDENT.stuExaScos}" var="ses">
+                                               <c:if test="${ses.eId == exam.eId}">
+                                                   ${ses.score}
+                                               </c:if>
+                                           </c:forEach>
+                                       </c:if>
                                    </div>
                                </td>
 
@@ -316,7 +325,7 @@
                                 <c:if test="${empty _CURRENT_STUDENT}">
                                     <div id="msg">${errorInfo}</div>
                                     <form id="form" method="post" action="${pageContext.request.contextPath}/login.html" name="send">
-                                        <input class="email_input requiredField username" id="username_ipt" name="sId" type="text" placeholder="用户名" >
+                                        <input class="email_input requiredField username" id="username_ipt" name="stuSid" type="text" placeholder="用户名" >
                                         <input class="email_input requiredField password" id="password_ipt" name="sPassword" type="password" placeholder="密码"><br />
                                         <input class="email_submit email_margin_top submit" id="login_submit" type="submit" value="登录">
                                     </form>

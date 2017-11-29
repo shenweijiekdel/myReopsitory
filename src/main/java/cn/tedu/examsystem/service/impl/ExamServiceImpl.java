@@ -74,7 +74,7 @@ public class ExamServiceImpl implements ExamService {
             else
                 System.out.println("错");
         }
-        scoreRegist(stuId,Float.parseFloat(new  DecimalFormat("#.0").format(sScore)));
+        scoreRegist(stuId,examId,Float.parseFloat(new  DecimalFormat("#.0").format(sScore)));
 
     }
 
@@ -96,8 +96,8 @@ public class ExamServiceImpl implements ExamService {
         examMapper.deleteExamById(exam.geteId());
     }
 
-    public void scoreRegist(int stuId, float score) {
-
+    public void scoreRegist(int stuId, int examId,float score) {
+        examMapper.scoreRegist(stuId,examId,score);
     }
 
     public void isOnlineExam(int eId) {

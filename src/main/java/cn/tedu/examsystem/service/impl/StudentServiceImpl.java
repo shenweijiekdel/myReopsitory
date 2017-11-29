@@ -18,7 +18,7 @@ public class StudentServiceImpl implements StudentService {
 	 
 
 	public Student findOneBySid(String sId) {
-		 
+
 		return studentMapper.findOneBySid(sId);
 	}
 

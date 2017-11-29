@@ -2,6 +2,8 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="examsystem@localhost" uuid="57e3bf75-5971-45ea-9b5c-41b1cb38bd6a">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <user-name>fswj</user-name>
       <database-info product="MySQL" version="5.5.27" jdbc-version="3.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.10 ( Revision: ${svn.Revision} )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
