@@ -95,11 +95,14 @@ public class ExamController {
         return "redirect:/exam/back/displayExam.html";
     }
     @RequestMapping("examList.html")
-    public String examList(Model model){
+    public String examList(Model model,@RequestParam(required = false,defaultValue = "none")String Msg){
+        System.out.println(Msg);
         Exam exam = new Exam();
         exam.setOnline(true);
         List<Exam> exams = examService.displayExams(exam);
         model.addAttribute("exams",exams);
+        if (!Msg.equals("none"))
+            model.addAttribute("Msg",Msg);
         return "frontHome";
     }
     @RequestMapping("questionList.html")

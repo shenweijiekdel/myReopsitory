@@ -21,6 +21,7 @@ import cn.tedu.examsystem.service.AdminService;
 import cn.tedu.examsystem.service.StudentService;
 import cn.tedu.examsystem.shiro.CustomizedToken;
 import cn.tedu.examsystem.shiro.LoginType;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LoginController {
@@ -51,7 +52,7 @@ public class LoginController {
 				Student student = (Student)currentUser.getPrincipal();
 				System.out.println(student);
 				session.setAttribute("_CURRENT_STUDENT", student);
-
+				model.addAttribute("loginMsg","登陆成功");
 				return "redirect:/home.html";
 			} catch (AuthenticationException e) {
 				e.printStackTrace();
@@ -71,12 +72,12 @@ public class LoginController {
 	}
 
 	@RequestMapping("/regist.html")
-	public String Regist(Student student,HttpSession session){
+	public String Regist(Student student,HttpSession session,RedirectAttributes redirectAttributes){
 		//将学生保存到数据库中
 		studentService.regist(student);
 
 		session.setAttribute("_CURRENT_STUDENT", student);
-		return "redirect:/home.html";
+		return "redirect:/exam/examList.html";
 	}
 	//ajax检验学号是否存在
 	@RequestMapping("checkSId.html")
