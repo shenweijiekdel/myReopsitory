@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.tedu.examsystem.mapper.ExamMapper">
+    <update id="isOnlineExam">
+        UPDATE t_exam SET is_online=#{isOnline} WHERE e_id=#{eId}
+    </update>
+
     <delete id="deleteExamById" parameterType="int">
         DELETE FROM t_exam WHERE e_id=#{examid}
     </delete>

@@ -97,6 +97,16 @@ public class ExamServiceImpl implements ExamService {
     }
 
     public void scoreRegist(int stuId, float score) {
-        examMapper.scoreRegist(stuId,score);
+
     }
+
+    public void isOnlineExam(int eId) {
+
+    }
+
+    public void isOnlineExam(Boolean b,Integer eId){
+        System.out.println(eId);
+        examMapper.isOnlineExam(b,eId);
+    }
+
 }

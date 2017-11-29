@@ -21,6 +21,7 @@ public class HomeController {
 
         return "back/backCreateExam";
     }
+
     @RequestMapping("/table.html")
     public String table(){
         return "back/table";

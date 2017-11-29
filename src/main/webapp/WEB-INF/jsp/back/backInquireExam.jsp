@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/11/25
-  Time: 14:26
+  Time: 11:04
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
@@ -13,19 +13,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>智能考试系统后台</title>
-    <script src="../../../staticfile/js/jquery-1.6.2.js"></script>
-    <script>
-        function dateFunc() {
-            alert($("input[type='datetime-local']").val())
-
-        }
-    </script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/layui/css/layui.css">
     <style>
         body{margin: 10px;}
         .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
     </style>
-
 </head>
 
 <body class="layui-layout-body">
@@ -82,39 +74,32 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <form action="${pageContext.request.contextPath}/exam/createExam.html" method="post" onsubmit="dateFunc()">
-            <table>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <table class="layui-table" id="test" lay-filter="demo">
+                <thead>
                 <tr>
-                    <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 考试名称
-                    </td>
-                    <td>
-                        <input type="text" name="eExam">
-                    </td>
-
+                    <th class="layui-table-header">考试编号</th>
+                    <th class="layui-table-header">考试名称</th>
+                    <th class="layui-table-header">考试时间</th>
                 </tr>
-                <tr>
-                    <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 考试时间
-                    </td>
+                </thead>
+                <c:forEach items="${exams}" var="exam">
+                    <tr>
+                        <td>${exam.eId}</td>
+                        <td>${exam.eExam}</td>
+                        <td>${exam.eTime}</td>
+                        <td><a class="layui-btn layui-btn-xs" href="/exam/showExamInfo.html?examid=${exam.eId}" lay-event="edit">编辑</a></td>
+                        <td><a class="layui-btn layui-btn-danger layui-btn-xs" href="/exam/deleteExam.html?examid=${exam.eId}"  lay-event="del">删除</a></td>
+                        <td><div>
+                            <a href="${pageContext.request.contextPath}/exam/isOnlineExam.html?examid=${exam.eId}">上传</a>
+                        </div></td>
+                        <td><div>
+                            <a href="${pageContext.request.contextPath}/exam/notOnlineExam.html?examid=${exam.eId}">下线</a>
+                        </div></td>
+                    </tr>
 
-                    <%-- <td>
-                         <input type="text" name="fastTime">
-                     </td>--%>
-                    <td>
-                        <input type="date" name="eTime">
-                    </td>
 
-                </tr>
-                <tr>
-                    <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="提交">
-                    </td>
-                </tr>
+                </c:forEach>
             </table>
-        </form>
     </div>
 
     <div class="layui-footer">
@@ -228,51 +213,4 @@
 
 
 
-<%--</html>--%>
-
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>--%>
-<%--<html>--%>
-<%--<head>--%>
-    <%--<title>Title</title>--%>
-<%--<script src="../../../staticfile/js/jquery-1.6.2.js"></script>--%>
-<%--<script>--%>
-<%--function dateFunc() {--%>
-<%--alert($("input[type='datetime-local']").val())--%>
-
-<%--}--%>
-<%--</script>--%>
-<%--</head>--%>
-<%--<body>--%>
-    <%--<form action="${pageContext.request.contextPath}/exam/createExam.html" method="post" onsubmit="dateFunc()">--%>
-        <%--<table>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--考试名称--%>
-                <%--</td>--%>
-                <%--<td>--%>
-                    <%--<input type="text" name="eExam">--%>
-                <%--</td>--%>
-
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--考试时间--%>
-                <%--</td>--%>
-
-               <%--&lt;%&ndash; <td>--%>
-                    <%--<input type="text" name="fastTime">--%>
-                <%--</td>&ndash;%&gt;--%>
-                <%--<td>--%>
-                    <%--<input type="date" name="eTime">--%>
-                <%--</td>--%>
-
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--<input type="submit" value="提交">--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-        <%--</table>--%>
-    <%--</form>--%>
-<%--</body>--%>
-<%--</html>--%>
+</html>

@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后台大布局 - Layui</title>
+    <title>智能考试系统后台</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/layui/css/layui.css">
     <style>
         body{margin: 10px;}
@@ -46,7 +46,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
         </ul>
     </div>
 
@@ -55,59 +55,25 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
+                    <a class="" href="javascript:;">考试管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="javascript:;">列表三</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a href="/createExam.html">添加考试</a></dd>
+                        <dd><a href="/exam/back/displayExam.html">查询考试</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">解决方案</a>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">学生管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
-                        <dd><a href="javascript:;">列表二</a></dd>
-                        <dd><a href="">超链接</a></dd>
+                        <dd><a href="/studentInfo.html">学生信息</a></dd>
+                        <dd><a href="/studentScore.html">学生分数</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">云市场</a></li>
-                <li class="layui-nav-item"><a href="">发布商品</a></li>
             </ul>
         </div>
     </div>
 
     <div class="layui-body">
-        <!-- 内容主体区域 -->
 
-
-            <table class="layui-table" id="test" lay-filter="demo">
-                <thead>
-                <tr>
-                    <th class="layui-table-header">考试编号</th>
-                    <th class="layui-table-header">考试名称</th>
-                    <th class="layui-table-header">考试时间</th>
-                </tr>
-                </thead>
-                <c:forEach items="${exams}" var="exam">
-                    <tr>
-                        <td>${exam.eId}</td>
-                        <td>${exam.eExam}</td>
-                        <td>${exam.eTime}</td>
-                        <td><a class="layui-btn layui-btn-xs" href="/exam/showExamInfo.html?examid=${exam.eId}" lay-event="edit">编辑</a></td>
-                        <td><a class="layui-btn layui-btn-danger layui-btn-xs" href="/exam/deleteExam.html?examid=${exam.eId}"  lay-event="del">删除</a></td>
-                    </tr>
-
-                </c:forEach>
-            </table>
-
-
-
-            <div>
-                <a href="/createExam.html">添加考试</a>
-            </div>
-
-        <div style="padding: 15px;">内容主体区域</div>
     </div>
 
     <div class="layui-footer">

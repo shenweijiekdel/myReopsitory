@@ -12,6 +12,8 @@ public interface ExamMapper {
     List<Exam> findAllExam(Exam isOnline);
 
     void deleteExamById(int eId);
-  Exam findExambyId(int eId);
-  void scoreRegist(@Param("stuId")int stuId, @Param("score") float score);
+    Exam findExambyId(int eId);
+    void scoreRegist(@Param("stuId")int stuId, @Param("score") float score);
+
+    void isOnlineExam(@Param("isOnline") Boolean b,@Param("eId") Integer eId);
 }

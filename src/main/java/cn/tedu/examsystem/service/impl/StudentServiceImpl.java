@@ -8,6 +8,8 @@ import cn.tedu.examsystem.mapper.StudentMapper;
 import cn.tedu.examsystem.pojo.Student;
 import cn.tedu.examsystem.tool.Md5Utils;
 
+import java.util.List;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 	
@@ -29,5 +31,20 @@ public class StudentServiceImpl implements StudentService {
 		studentMapper.regist(student);
 	}
 
+	public List<Student> findAll(){
+
+		return studentMapper.findAll();
+	}
+
+	public void deleteStudent(Integer sid){
+
+		studentMapper.deleteStudent(sid);
+
+	}
+
+	public List<Student> findScore(){
+
+		return studentMapper.findScore();
+	}
 	
 }

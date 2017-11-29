@@ -2,6 +2,8 @@ package cn.tedu.examsystem.service;
 
 import cn.tedu.examsystem.pojo.Student;
 
+import java.util.List;
+
 public interface StudentService {
 
 	/**
@@ -16,4 +18,9 @@ public interface StudentService {
 	 */
 	void regist(Student student);
 
+	public List<Student> findAll();
+
+	public void deleteStudent(Integer sid);
+
+	public List<Student> findScore();
 }

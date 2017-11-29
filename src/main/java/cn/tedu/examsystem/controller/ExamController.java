@@ -77,8 +77,8 @@ public class ExamController {
         List<Exam> exams = examService.displayExams(exam);
         System.out.println(exams.size());
         if (exams.size() > 0)
-        model.addAttribute("exams",exams);
-        return "back/backHome";
+            model.addAttribute("exams",exams);
+        return "back/backInquireExam";
     }
     @RequestMapping("showExamInfo.html")
     public String showExamInfo(Model model,int examid){
@@ -124,6 +124,22 @@ public class ExamController {
     public String timeOut(){
        time --;
        return time + "";
+    }
+
+    @RequestMapping("isOnlineExam.html")
+    public String isOnlineExam(Integer examid){
+        if (examid!=null){
+            examService.isOnlineExam(true,examid);
+        }
+        return "redirect:/exam/back/displayExam.html";
+    }
+
+    @RequestMapping("notOnlineExam.html")
+    public String notOnlineExam(Integer examid){
+        if (examid!=null){
+            examService.isOnlineExam(false,examid);
+        }
+        return "redirect:/exam/back/displayExam.html";
     }
 
 }

@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2017/11/25
-  Time: 14:26
+  Time: 11:04
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
@@ -12,20 +12,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>智能考试系统后台</title>
-    <script src="../../../staticfile/js/jquery-1.6.2.js"></script>
-    <script>
-        function dateFunc() {
-            alert($("input[type='datetime-local']").val())
-
-        }
-    </script>
+    <title>layout 后台大布局 - Layui</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/layui/css/layui.css">
+    <link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css?t=1511048241366" media="all">
     <style>
         body{margin: 10px;}
         .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
     </style>
-
 </head>
 
 <body class="layui-layout-body">
@@ -54,7 +47,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退出</a></li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
         </ul>
     </div>
 
@@ -65,15 +58,19 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">考试管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/createExam.html">添加考试</a></dd>
-                        <dd><a href="/exam/back/displayExam.html">查询考试</a></dd>
+                        <dd><a href="javascript:;">考题信息</a></dd>
+                        <dd><a href="javascript:;">添加考题</a></dd>
+                        <dd><a href="javascript:;">删除考题</a></dd>
+                        <dd><a href="javascript:;">修改考题</a></dd>
+                        <dd><a href="">超链接</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">学生管理</a>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">学生管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/studentInfo.html">学生信息</a></dd>
-                        <dd><a href="/studentScore.html">学生分数</a></dd>
+                        <dd><a href="javascript:;">学生列表</a></dd>
+                        <dd><a href="javascript:;">成绩列表</a></dd>
+                        <dd><a href="">超链接</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -81,40 +78,15 @@
     </div>
 
     <div class="layui-body">
-        <!-- 内容主体区域 -->
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <form action="${pageContext.request.contextPath}/exam/createExam.html" method="post" onsubmit="dateFunc()">
-            <table>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <tr>
-                    <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 考试名称
-                    </td>
-                    <td>
-                        <input type="text" name="eExam">
-                    </td>
 
-                </tr>
-                <tr>
-                    <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 考试时间
-                    </td>
 
-                    <%-- <td>
-                         <input type="text" name="fastTime">
-                     </td>--%>
-                    <td>
-                        <input type="date" name="eTime">
-                    </td>
+        <div style="padding: 15px;">
+            <!-- 内容主体区域 -->
+            <div>
+                <a href="/createExam.html">添加考试</a>
+            </div>
 
-                </tr>
-                <tr>
-                    <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="提交">
-                    </td>
-                </tr>
-            </table>
-        </form>
+        </div>
     </div>
 
     <div class="layui-footer">
@@ -228,51 +200,4 @@
 
 
 
-<%--</html>--%>
-
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>--%>
-<%--<html>--%>
-<%--<head>--%>
-    <%--<title>Title</title>--%>
-<%--<script src="../../../staticfile/js/jquery-1.6.2.js"></script>--%>
-<%--<script>--%>
-<%--function dateFunc() {--%>
-<%--alert($("input[type='datetime-local']").val())--%>
-
-<%--}--%>
-<%--</script>--%>
-<%--</head>--%>
-<%--<body>--%>
-    <%--<form action="${pageContext.request.contextPath}/exam/createExam.html" method="post" onsubmit="dateFunc()">--%>
-        <%--<table>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--考试名称--%>
-                <%--</td>--%>
-                <%--<td>--%>
-                    <%--<input type="text" name="eExam">--%>
-                <%--</td>--%>
-
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--考试时间--%>
-                <%--</td>--%>
-
-               <%--&lt;%&ndash; <td>--%>
-                    <%--<input type="text" name="fastTime">--%>
-                <%--</td>&ndash;%&gt;--%>
-                <%--<td>--%>
-                    <%--<input type="date" name="eTime">--%>
-                <%--</td>--%>
-
-            <%--</tr>--%>
-            <%--<tr>--%>
-                <%--<td>--%>
-                    <%--<input type="submit" value="提交">--%>
-                <%--</td>--%>
-            <%--</tr>--%>
-        <%--</table>--%>
-    <%--</form>--%>
-<%--</body>--%>
-<%--</html>--%>
+</html>
