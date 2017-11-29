@@ -1,5 +1,6 @@
 package cn.tedu.examsystem.controller;
 
+import cn.tedu.examsystem.pojo.StuExaSco;
 import cn.tedu.examsystem.pojo.Student;
 import cn.tedu.examsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class StudentController {
     @RequestMapping("/studentScore.html")
     public String studentScore(Model model){
 
-        List<Student> studentScore = studentService.findScore();
+        List<StuExaSco> studentScore = studentService.findScore();
         model.addAttribute("studentScore",studentScore);
         return "back/backStudentScore";
     }

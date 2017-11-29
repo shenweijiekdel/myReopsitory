@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,9 +38,11 @@ public class ExamServiceImpl implements ExamService {
     public void paperJudge(String[] answers, int examId, int questionNum, int stuId) {
 
         if (answers == null){
-            scoreRegist(stuId,0);
+            scoreRegist(stuId,examId,0);
             return ;
         }
+        System.out.println(answers.length);
+        System.out.println(questionNum);
         List<Answer> sAnswers = new ArrayList<Answer>();
 
         String[] que = new String[answers.length];

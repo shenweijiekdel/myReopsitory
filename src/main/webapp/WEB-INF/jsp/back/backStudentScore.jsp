@@ -78,14 +78,15 @@
             <thead>
             <tr>
                 <th class="layui-table-header">学生ID</th>
+                <th class="layui-table-header">考试ID</th>
                 <th class="layui-table-header">学生成绩</th>
             </tr>
             </thead>
             <c:forEach items="${studentScore}" var="ss">
                 <tr>
                     <td>${ss.sId}</td>
-                    <td>${ss.sScore}</td>
-                    <%--<td><a class="layui-btn layui-btn-danger layui-btn-xs" href="/deleteStudent.html?sid=${s.sId}"  lay-event="del">删除</a></td>--%>
+                    <td>${ss.eId}</td>
+                    <td>${ss.score}</td>
                 </tr>
 
             </c:forEach>

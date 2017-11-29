@@ -1,5 +1,6 @@
 package cn.tedu.examsystem.service.impl;
 
+import cn.tedu.examsystem.pojo.StuExaSco;
 import cn.tedu.examsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,7 @@ public class StudentServiceImpl implements StudentService {
 
 	}
 
-	public List<Student> findScore(){
+	public List<StuExaSco> findScore(){
 
 		return studentMapper.findScore();
 	}

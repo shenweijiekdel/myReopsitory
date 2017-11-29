@@ -1,5 +1,6 @@
 package cn.tedu.examsystem.mapper;
 
+import cn.tedu.examsystem.pojo.StuExaSco;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -22,6 +23,6 @@ public interface StudentMapper {
 	@Delete("delete from student where s_id=#{sId}")
 	public void deleteStudent(Integer sid);
 
-	@Select("select s_id, s_score from student ")
-	public List<Student> findScore();
+	@Select("select * from t_ses ")
+	public List<StuExaSco> findScore();
 }

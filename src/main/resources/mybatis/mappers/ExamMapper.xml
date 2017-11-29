@@ -16,14 +16,16 @@
         <if test="eId != null">e_id,</if>
         <if test="eExam != null">e_exam,</if>
         <if test="eTime != null">e_time,</if>
-        <if test="isOnline != null">is_online</if>
+        <if test="isOnline != null">is_online,</if>
+        <if test="testTimeMin != null">test_time_min</if>
     </trim>
     VALUES
     <trim prefix="(" suffix=")" suffixOverrides=",">
         <if test="eId != null">#{eId},</if>
         <if test="eExam != null">#{eExam},</if>
         <if test="eTime != null">#{eTime},</if>
-        <if test="isOnline != null">#{isOnline}</if>
+        <if test="isOnline != null">#{isOnline},</if>
+        <if test="testTimeMin != null">#{testTimeMin}</if>
     </trim>
 </insert>
     <select id="findAllExam" resultMap="examRM">

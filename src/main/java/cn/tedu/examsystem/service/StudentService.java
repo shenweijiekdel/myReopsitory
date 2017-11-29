@@ -1,5 +1,6 @@
 package cn.tedu.examsystem.service;
 
+import cn.tedu.examsystem.pojo.StuExaSco;
 import cn.tedu.examsystem.pojo.Student;
 
 import java.util.List;
@@ -22,5 +23,5 @@ public interface StudentService {
 
 	public void deleteStudent(Integer sid);
 
-	public List<Student> findScore();
+	public List<StuExaSco> findScore();
 }

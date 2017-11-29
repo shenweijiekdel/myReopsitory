@@ -108,6 +108,16 @@
                     </td>
 
                 </tr>
+
+                <tr>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 考试时长
+                    </td>
+                    <td>
+                        <input type="date" name="testTimeMin">
+                    </td>
+
+                </tr>
                 <tr>
                     <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="提交">
