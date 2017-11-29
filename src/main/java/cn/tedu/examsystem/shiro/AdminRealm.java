@@ -27,9 +27,9 @@ public class AdminRealm extends AuthorizingRealm{
 		// 1. 把AuthenticationToken转换为CustomizedToken
 		CustomizedToken customizedToken = (CustomizedToken) token;
 		// 2. 从CustomizedToken中获取uId
-		String uId = customizedToken.getUsername();
+		String username = customizedToken.getUsername();
 		// 3. 若用户不存在，抛出UnknownAccountException异常
-		admin = adminService.findOneByUid(uId);
+		admin = adminService.findOneByUsername(username);
 		if (admin == null)
 			throw new UnknownAccountException("用户不存在！");
 		 

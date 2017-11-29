@@ -72,7 +72,7 @@ public class ExamController {
     }
 
     /*后台创建考试*/
-    @RequestMapping("createExam.html")
+    @RequestMapping("back/createExam.html")
     public String createExam(Exam exam,Model model){
 
         examService.createExam(exam);

@@ -16,10 +16,10 @@ public interface AdminMapper {
 
 	/**
 	 * 通过uId获取 该uId对应的管理员的所有信息并将其封装进Admin中返回
-	 * @param uId 管理员id
+	 * @param username 管理员用户名
 	 * @return 返回从数据库中获取的admin对象
 	 */
-	@Select("select * from admin where u_id=#{uId}")
-	public Admin findOneByUid(String uId);
+	@Select("select * from admin where username=#{username}")
+	public Admin findOneByUsername(String username);
 
 }

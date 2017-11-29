@@ -426,25 +426,35 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <!-- form section -->
                         <div id="form-wrapper">
                             <form  method="post" action="${pageContext.request.contextPath}/regist.html" name="send">
                                 <input class="email_input requiredField sId" id="sId" name="sId" type="text" placeholder="学号" >
                                 <input class="email_input requiredField sName" id="sName" name="sName" type="text" placeholder="姓名"><br />
                                 <input id="gender" name="sGender" type="radio" value="男"
-                                               checked="checked" />男 <input id="gender2" name="sGender"
+                                               checked="checked"/>男<input id="gender2" name="sGender"
                                                                             type="radio" value="女" />女<br/>
                                 <input class="email_input requiredField subject" name="sClass" type="text" placeholder="班级" >
 
 
                                 <input class="email_input requiredField subject" name="sPassword" type="password" placeholder="密码" >
                                 <input class="email_input requiredField subject" name="sPassword2" type="password" placeholder="确认密码" >
-                                <input class="email_submit email_margin_top submit" type="submit" value="注册">
+                                <input class="email_submit email_margin_top submit" type="submit" value="学生注册">
                             </form>
                         </div>
                         <!-- end form section -->
-                    </div>
+                    </div> <div class="col-sm-6">
+                    <!-- form section -->
+                    <form method="post" action="${pageContext.request.contextPath}/addAdmin.html">
+                        <input class="email_input requiredField sId" id="uId" name="username" type="text" placeholder="管理员id" >
+                        <input class="email_input requiredField subject" name="Password" type="password" placeholder="密码" >
+                        <input class="email_input requiredField subject" name="Password2" type="password" placeholder="确认密码" >
+                        <input class="email_submit email_margin_top submit" type="submit" value="管理员注册">
+                    </form>
+
+                    <!-- end form section -->
+                </div>
                 </div>
             </div>
         </div>

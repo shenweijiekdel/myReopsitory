@@ -12,9 +12,9 @@ public interface AdminService {
 
 	/**
 	 * 通过管理员id得到该id的管理员对象
-	 * @param uId 管理员id
+	 * @param username 管理员用户名
 	 * @return  返回对应的管理员Admin对象
 	 */
-	Admin findOneByUid(String uId);
+	Admin findOneByUsername(String username);
 
 }

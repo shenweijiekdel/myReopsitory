@@ -14,13 +14,13 @@ public class AdminServiceImpl implements AdminService {
 	private AdminMapper adminMapper;
 
 	public void regist(Admin admin) {
-		admin.setPassword(Md5Utils.getMd5(admin.getPassword(), admin.getuId()+""));
+		admin.setPassword(Md5Utils.getMd5(admin.getPassword(), admin.getUsername()));
 		adminMapper.regist(admin);
 	}
 
-	public Admin findOneByUid(String uId) {
+	public Admin findOneByUsername(String username) {
 		 
-		return adminMapper.findOneByUid(uId);
+		return adminMapper.findOneByUsername(username);
 		
 	}
 

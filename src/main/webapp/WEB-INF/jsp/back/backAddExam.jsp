@@ -22,65 +22,15 @@
 </head>
 
 <body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-        <div class="layui-logo">智能考试系统后台管理</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-
-                </dl>
-            </li>
-        </ul>
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item">
-                <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    贤心
-                </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item"><a href="">退了</a></li>
-        </ul>
-    </div>
-
-    <div class="layui-side layui-bg-black">
-        <div class="layui-side-scroll">
-            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">考试管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">考题信息</a></dd>
-                        <dd><a href="javascript:;">添加考题</a></dd>
-                        <dd><a href="javascript:;">删除考题</a></dd>
-                        <dd><a href="javascript:;">修改考题</a></dd>
-                        <dd><a href="">超链接</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="javascript:;">学生管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">学生列表</a></dd>
-                        <dd><a href="javascript:;">成绩列表</a></dd>
-                        <dd><a href="">超链接</a></dd>
-                    </dl>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="layui-body">
+        <div class="layui-layout layui-layout-admin">
+            <%@include file="_head.jsp"%>
+            <div class="layui-side layui-bg-black">
+                <%@include file="_left.jsp"%>
+            </div>
+            <div class="layui-body">
 
 
-        <div style="padding: 15px;">
+                <div style="padding: 15px;">
             <!-- 内容主体区域 -->
             <div>
                 <a href="${pageContext.request.contextPath}/createExam.html">添加考试</a>
