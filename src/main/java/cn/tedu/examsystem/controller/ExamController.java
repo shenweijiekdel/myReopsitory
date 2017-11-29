@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -40,6 +39,10 @@ public class ExamController {
     }
     @RequestMapping("addQuestionBlank.html")
     public String addQuestionBlank(int examId,Question question,String[] questionOption,int[] questionAnswer,Model model){
+        System.out.println(examId);
+        System.out.println(question);
+        System.out.println(Arrays.toString(questionOption));
+        System.out.println(Arrays.toString(questionAnswer));
         System.out.println("examId=" + examId);
         List<Option> options = new ArrayList<Option>();
         List<Answer> answers = new ArrayList<Answer>();
