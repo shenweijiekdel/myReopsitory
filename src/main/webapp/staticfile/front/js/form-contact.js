@@ -3,6 +3,12 @@
 // contact form
 $(document).ready(function() {
 
+
+/*  $(document).blur(function () {
+        alert("aaa");
+        $(document).focus();
+    });*/
+
 	/*$('form#form').submit(function() {
 	$('form#form .error').remove();
 	var hasError = false;

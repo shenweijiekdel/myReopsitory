@@ -33,7 +33,10 @@
         var timer;
         $(function () {
            timer =  setInterval("time()",1000);
-
+            $(window).resize(function() {
+                alert("检测到您正在缩放窗口，您的试卷将被提交");
+               formSubmit();
+            });
         })
         function time() {
             $.post("/exam/timeOut.html",function (data) {
@@ -48,6 +51,16 @@
             $("#queForm").submit();
         }
     </script>
+   <%-- <script>
+        window.onbeforeunload = onbeforeunload_handler;
+        window.onunload = onunload_handler;
+        function onbeforeunload_handler(){
+            var warning="您正在考试，关闭会丢失您的页面";
+            //你的业务操作。。。。
+            alert("aa")
+            return warning;
+        }
+    </script>--%>
     <style>
         a:link,a:visited,a:default
         {

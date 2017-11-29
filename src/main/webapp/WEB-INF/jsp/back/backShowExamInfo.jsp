@@ -100,18 +100,34 @@
 
         <table class="layui-table" id="test" lay-filter="demo">
             <thead>
-            <tr>
-                <th class="layui-table-header">试题ID</th>
-                <th class="layui-table-header">试题题目</th>
-                <td><a href="/addQuestionBlank.html?examId=${examId}">添加题目</a></td>
+            <tr align="center">
+
+                <td><a href="/addQuestionBlank.html?examId=${examId}" class="layui-btn">添加题目</a></td>
             </tr>
             </thead>
 
             <c:forEach items="${questions}" var="q">
                 <tr>
-                    <td>${q.pId}</td>
-                    <td>${q.pStem}</td>
+
+                    <%--<td>${q.pId}</td>--%>
+                    <td style="font-weight: bold;font-size: 18px;background-color: rgba(0,100,250,0.1)">${q.pStem}</td>
                 </tr>
+                <c:forEach items="${q.options}" var="option">
+
+                    <c:forEach items="${q.answers}" var="answer">
+                        <c:if test="${answer.oId == option.oId}">
+                            <c:set var="asw" value="true"/>
+                        </c:if>
+                    </c:forEach>
+                    <tr>
+
+                            <%--<td>${q.pId}</td>--%>
+                        <td
+                                <c:if test="${asw eq 'true'}">style="color: red;font-weight: bold</c:if>;margin-left: 10px"
+                        >${option.oContent}</td>
+                    </tr>
+                    <c:remove var="asw"/>
+                </c:forEach>
             </c:forEach>
         </table>
     </div>

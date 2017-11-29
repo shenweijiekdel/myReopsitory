@@ -24,6 +24,10 @@
     <style>
         body{margin: 10px;}
         .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+        .mytable{
+           width:60%;background-color:#fff;color:#666;
+            font-size: 20px;
+        }
     </style>
 
 </head>
@@ -84,14 +88,15 @@
         <!-- 内容主体区域 -->
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <form action="${pageContext.request.contextPath}/exam/createExam.html" method="post" onsubmit="dateFunc()">
-            <table>
+            <table class="mytable">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                 <tr>
                     <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 考试名称
                     </td>
                     <td>
-                        <input type="text" name="eExam">
+                        <input type="text" name="eExam" class="layui-input">
                     </td>
 
                 </tr>
@@ -104,7 +109,7 @@
                          <input type="text" name="fastTime">
                      </td>--%>
                     <td>
-                        <input type="date" name="eTime">
+                        <input type="date" name="eTime" class="layui-input">
                     </td>
 
                 </tr>
@@ -114,13 +119,13 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 考试时长
                     </td>
                     <td>
-                        <input type="date" name="testTimeMin">
+                        <input type="number" name="testTimeMin" class="layui-input">
                     </td>
 
                 </tr>
                 <tr>
-                    <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="提交">
+                    <td colspan="2" align="center">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="提交" class="layui-btn">
                     </td>
                 </tr>
             </table>

@@ -17,6 +17,10 @@
     <style>
         body{margin: 10px;}
         .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+        .mytable{
+            width:60%;background-color:#fff;color:#666;
+            font-size: 20px;
+        }
     </style>
 </head>
 

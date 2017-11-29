@@ -39,11 +39,11 @@ public class LoginController {
 		return "/login/login";
 	}
 	@RequestMapping("/login.html")
-	public String Login(String stuSid,String sPassword,Model model,HttpSession session){
+	public String Login(String username,String password,Model model,HttpSession session){
 
 		Subject currentUser = SecurityUtils.getSubject();
 		if (!currentUser.isAuthenticated()) {
-			CustomizedToken customizedToken = new CustomizedToken(stuSid, sPassword, LoginType.Student.toString());
+			CustomizedToken customizedToken = new CustomizedToken(username,password, LoginType.Student.toString());
 			customizedToken.setRememberMe(false);
 			try {
 				//登录，进入studentRealm中
@@ -57,7 +57,7 @@ public class LoginController {
 			} catch (AuthenticationException e) {
 				e.printStackTrace();
 				//把错误信息传回页面
-				model.addAttribute("errorInfo","学号或密码不正确！");
+				model.addAttribute("errorInfo",e.getMessage());
 				return "frontHome";
 			}
 		}
@@ -108,10 +108,11 @@ public class LoginController {
 		return "/login/adminLogin";
 	}
 	@RequestMapping("/adminLogin.html")
-	public String adminLogin(String uId,String password,Model model,HttpSession session){
+	public String adminLogin(String username,String password,Model model,HttpSession session){
 		Subject currentUser = SecurityUtils.getSubject();
+
 		if (!currentUser.isAuthenticated()) {
-			CustomizedToken customizedToken = new CustomizedToken(uId, password, LoginType.ADMIN.toString());
+			CustomizedToken customizedToken = new CustomizedToken(username, password, LoginType.ADMIN.toString());
 			customizedToken.setRememberMe(false);
 			try {
 				currentUser.login(customizedToken);
@@ -145,7 +146,7 @@ public class LoginController {
 		//将页面的管理员信息保存到数据库中
 		adminService.regist(admin);
 		//设置页面显示 欢迎 ** 用户
-		session.setAttribute("_CURRENT_USER", admin.getUsername());
+		session.setAttribute("_CURRENT_ADMIN", admin);
 		return "redirect:/home.html";
 	}
 	//ajax检验管理员id是否存在

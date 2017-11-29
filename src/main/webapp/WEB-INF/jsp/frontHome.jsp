@@ -58,12 +58,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/staticfile/front/css/preloder.css" media="all" />			<!-- Preloder css -->
 
     <!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-
-    <script>
-        function onsubmit() {
-            
-        }
-    </script>
+<script>
+    function startExam(examId,time) {
+        confirm("您点击了开始考试按钮，请确认浏览器处于最大化状态并且一切准备就绪，否则您将不能对浏览器进行大小调整");
+        location.href="${pageContext.request.contextPath}/exam/questionList.html?examId="+examId + "&time=" + time;
+    }
+</script>
 </head>
 <body>
 <!-- loader-wrapper -->
@@ -112,6 +112,16 @@
                     <div class="home_area_text">
                         <h2>欢迎进入在线考试系统</h2> <!-- Page title -->
                         <h4>Welcom to test online system</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="home_area_text">
+                        <h1>您可以先登录然后查看你的考试成绩</h1> <!-- Page title -->
+                        <h4>出门左转</h4>
                     </div>
                 </div>
             </div>
@@ -215,7 +225,7 @@
                                    <div>
 
 
-                                       <c:if test="${!empty _CURRENT_STUDENT.stuExaScos}">
+
                                            <c:forEach items="${_CURRENT_STUDENT.stuExaScos}" var="ses">
                                                <c:if test="${ses.eId == exam.eId}">
 
@@ -228,8 +238,8 @@
 
 
                                             <c:if test="${flag == null}">
-                                                <a href="${pageContext.request.contextPath}/exam/questionList.html?examId=${exam.eId} &time=${exam.testTimeMin}">开始考试</a>
-                                            </c:if>
+                                                <a href="#" onclick="startExam(${exam.eId},${exam.testTimeMin})">开始考试</a>
+
                                            <c:remove var="flag"/>
                                        </c:if>
                                    </div>
@@ -320,6 +330,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
+
                             <div class="about_us_text">
                                 <h2>欢迎登录</h2>
                                 <h4>Welcome to login</h4>
@@ -340,10 +351,11 @@
                                 </c:if>
                                 <c:if test="${empty _CURRENT_STUDENT}">
                                     <div id="msg">${errorInfo}</div>
-                                    <form id="form" method="post" action="${pageContext.request.contextPath}/login.html" name="send">
-                                        <input class="email_input requiredField username" id="username_ipt" name="stuSid" type="text" placeholder="用户名" >
-                                        <input class="email_input requiredField password" id="password_ipt" name="sPassword" type="password" placeholder="密码"><br />
-                                        <input class="email_submit email_margin_top submit" id="login_submit" type="submit" value="登录">
+                                    <form id="form" method="post" action="${pageContext.request.contextPath}/login.html" name="send"> <br />
+                                        <input class="email_input requiredField username" id="username_ipt" name="username" type="text" placeholder="用户名" ><br />
+                                        <input class="email_input requiredField password" id="password_ipt" name="password" type="password" placeholder="密码"><br />
+                                        <button class="email_submit email_margin_top submit" id="login_submit_stu" type="submit" value="login_stu">学生  登录</button>
+                                        <button class="email_submit email_margin_top submit" id="login_submit_admin" type="submit" value="login_admin">管理员登录</button>
                                     </form>
                                 </c:if>
                             </div>
@@ -363,22 +375,14 @@
     =============================================================================== -->
 
     <div class="section" id="section3">	<!-- Section3 -->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="logo logo_margin">
-                        <img src="img/logo.png" alt="" />  <!-- Here is your logo -->
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="content">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="about_us_text">
-                            <h2>About us</h2>				<!-- Page title -->
-                            <h4>We are coming soon</h4>
+                            <h2>关于我们</h2>				<!-- Page title -->
+                            <h4>About us</h4>
                         </div>
                     </div>
                 </div>
@@ -386,7 +390,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <p class="about_us_p" >Lorem Ipsum is simply dummy text of the printing and types etting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and t only five centuries, but also the leap into electronic types etting, remaining essentially unchanged. It was popularised in the the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p class="about_us_p" >经过5天的努力终于有点样子了</p>
                         <p class="under_p" >Lorem Ipsum is simply dummy text of the printing and types etting industry. Lorem Ipsum has been the industry's standard dummy text ever since the containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                     </div>
                 </div>
@@ -450,7 +454,7 @@
                 <div class="button_area" id="sticker"> <!-- sticker menu for mobile layout -->
                     <ul id="nav">
                         <li id="scrollbar" >
-                            <h3 class="btn_menu home btn  btn-lg"> 主页</h3>
+                            <h3 class="btn_menu home btn  btn-lg" onclick="window.location.href='/home.html'"> 主页</h3>
                             <h3 class="btn_menu services btn  btn-lg " >考试</h3>
                             <h3 class="btn_menu team_member btn  btn-lg" id="login">登陆</h3>
                             <h3 class="btn_menu about_us btn  btn-lg " >关于</h3>
@@ -469,7 +473,7 @@
 
 	              	<!-- Main js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/custom.js"></script>						   	<!-- Custom js file -->
-<%--<script src="${pageContext.request.contextPath}/staticfile/front/js/form-contact.js"></script>						<!-- form-contact js file -->--%>
+<script src="${pageContext.request.contextPath}/staticfile/front/js/form-contact.js"></script>						<!-- form-contact js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/jquery.slicknav.min.js"></script>				<!-- Slicknav js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/bootstrap.min.js"></script>						<!-- Bootstrap js file -->
 <script src="${pageContext.request.contextPath}/staticfile/front/js/owl.carousel.min.js"></script>					<!-- Carousel js file -->
