@@ -34,24 +34,32 @@ public class ExamServiceImpl implements ExamService {
     public List<Exam> displayExams(Exam isOnline) {
         return examMapper.findAllExam(isOnline);
     }
-
+    @Transactional
     public void paperJudge(String[] answers, int examId, int questionNum, int stuId) {
 
         if (answers == null){
             scoreRegist(stuId,examId,0);
             return ;
         }
-        System.out.println(answers.length);
-        System.out.println(questionNum);
-        List<Answer> sAnswers = new ArrayList<Answer>();
 
-        String[] que = new String[answers.length];
-        for (int i = 0; i <answers.length; i++) {
+        List<Answer> sAnswers = new ArrayList<Answer>();
+        if (questionNum == 1){ //提交过来一道题时会自动把逗号隔开的两个字符串看成数组的两个值
             Answer sAnswer = new Answer();
-            sAnswer.setpId(answers[i].split(",")[0]);
-            sAnswer.setoId(answers[i].split(",")[1]);
+            sAnswer.setpId(answers[0]);
+            sAnswer.setoId(answers[1]);
             sAnswers.add(sAnswer);
         }
+        else
+            for (int i = 0; i <answers.length; i++) {
+                Answer sAnswer = new Answer();
+
+                sAnswer.setpId(answers[i].split(",")[0]);
+                sAnswer.setoId(answers[i].split(",")[1]);
+                sAnswers.add(sAnswer);
+            }
+        String[] que = new String[answers.length];
+
+
 
 
 
@@ -71,13 +79,14 @@ public class ExamServiceImpl implements ExamService {
             Collections.sort(sAnswer);
             Collections.sort(qAnswers);
             if (qAnswers.equals(sAnswer)){
-                System.out.println("对");
+
                 sScore += eveScore;
             }
             else
                 System.out.println("错");
         }
         scoreRegist(stuId,examId,Float.parseFloat(new  DecimalFormat("#.0").format(sScore)));
+
 
     }
 

@@ -3,6 +3,7 @@ package cn.tedu.examsystem.controller;
 import cn.tedu.examsystem.pojo.*;
 import cn.tedu.examsystem.service.ExamService;
 import cn.tedu.examsystem.service.QuestionService;
+import cn.tedu.examsystem.service.StudentService;
 import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class ExamController {
     private QuestionService questionService;
     @Autowired
     private ExamService examService;
+    @Autowired
+    private StudentService studentService;
     @InitBinder
     public void initBinder(WebDataBinder binder) {
 
@@ -120,8 +123,18 @@ public class ExamController {
     }
     @RequestMapping("paperJudge.html")
     public String paperJudge(Model model, @RequestParam(required = false) String[] answers, int examId, int questionNum,HttpSession session){
+        System.out.println(questionNum);
+
+        try {
+
       examService.paperJudge(answers,examId,questionNum,((Student)session.getAttribute("_CURRENT_STUDENT")).getsId());
-        return "home";
+      Student student = (Student) session.getAttribute("_CURRENT_STUDENT");
+                session.setAttribute("_CURRENT_STUDENT",studentService.findOneBySid(student.getsId().toString()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return "redirect:/home.html";
     }
     @Test
     public void a(){
